@@ -1,2 +1,30 @@
-# aya-portfolio
-Aya Saito — Web and graphic design portfolio
+# Aya Saito Portfolio
+
+斎藤 彩のWebポートフォリオ。Web・イラスト・紙媒体・広告・ロゴ・自主制作の6カテゴリを掲載。
+
+## 表示方法
+
+`dist/index.html` をブラウザーで開くと表示できます。外部サービスやビルド作業は不要です。
+
+## 掲載内容
+
+- 制作画像: 2022年10月3日版ポートフォリオから抽出
+- 経歴・スキル: 2026年1月1日版の履歴書・職務経歴書を参照
+- 履歴書原本、住所、生年月日、電話番号、通院情報、メールアドレスは収録していません。
+- 資料間で食い違う職歴の年月は掲載を避けています。
+- 在籍状況は2026年1月資料時点のものです。
+
+## GitHub
+
+https://github.com/ayakahrt2026-portfolio/aya-portfolio
+
+元ファイルは指定の外付けSSD内の `aya-portfolio` フォルダーで管理します。
+Web公開する場合はGitHub Pages等で `dist` 内を配信します。
+
+## 編集
+
+- `dist/index.html`: 掲載文、構成
+- `dist/style.css`: 配色・レイアウト・スマートフォン対応
+- `dist/assets/`: 作品画像
+
+掲載画像・商標等の権利は各権利者に帰属します。作品を含む再配布用ライセンスは付与していません。

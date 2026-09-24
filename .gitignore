@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.*
+*.pdf
+node_modules/
+.sites-runtime/
+
+# macOS metadata on external drives
+._*
