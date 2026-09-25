@@ -70,3 +70,34 @@ body{font-size:16px}.eyebrow{font-size:12px}.site-header nav>a{font-size:14px}.b
 
 /* Min-style top-left index and centered signature */
 .site-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;min-height:148px;padding-block:25px 15px;position:relative}.site-header .wordmark{grid-column:2;grid-row:1;text-align:center;margin-top:3px}.site-header nav{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.site-header nav>a{font-size:12px;line-height:1.6;letter-spacing:.07em}.site-header nav>a::before{content:'·';display:inline-block;margin-right:9px;color:#8b928d}.site-header nav>a:hover{text-decoration:underline;text-underline-offset:4px}.hero{padding-top:0}.learning-project{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:50px;padding-top:35px;border-top:1px solid var(--line)}.learning-project h3{font-size:21px;margin:10px 0 15px}.learning-project p:not(.eyebrow){font-size:14px;line-height:2}.learning-project-art .work-image{aspect-ratio:4/3}.personal-section .personal-work{margin-top:0}@media(max-width:600px){.site-header{grid-template-columns:1fr auto;min-height:150px;padding-top:20px}.site-header .wordmark{grid-column:2;font-size:25px}.site-header nav>a{font-size:11px}.site-header nav{gap:4px}.learning-project{grid-template-columns:1fr;gap:22px}.learning-project h3{font-size:19px}}
+
+/* Fixed editorial index, verified against Min's desktop preview. */
+@media(min-width:901px){
+.site-header nav{position:fixed;left:60px;top:60px;z-index:20;gap:5px;width:112px;padding:0;background:rgba(255,255,255,.94)}
+.site-header nav>a{font:14px/1.6 var(--serif);letter-spacing:.03em;text-transform:uppercase}
+body{padding-left:150px}.site-header{min-height:148px}.wrap{width:min(1120px,90%)}
+.reach-work #support.wrap{width:min(1120px,90%)}
+}
+.site-header nav>a[aria-current="location"]{color:#40594a;text-decoration:underline;text-underline-offset:5px}
+.archive-intro{display:grid;grid-template-columns:1fr 2fr;gap:35px;margin:0 0 30px}.archive-intro h3{font-size:22px;line-height:1.7}.archive-intro p{font-size:14px;line-height:2}
+.helios-web img{object-position:center top!important}.helios-list{margin-top:32px;border:1px solid var(--line);padding:0 24px}.helios-list summary{cursor:pointer;display:flex;align-items:center;gap:18px;padding:22px 0;font-size:17px;list-style:none}.helios-list summary::-webkit-details-marker{display:none}.helios-list summary>span:first-child{font-size:13px;color:var(--muted)}.helios-list summary>.material-symbols-outlined{margin-left:auto}.helios-list[open] summary>.material-symbols-outlined{transform:rotate(45deg)}.helios-list>p{font-size:13px;color:var(--muted);margin:0 0 22px}.helios-list ol{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;padding:0 0 24px 30px;margin:0}.helios-list li{padding:12px 0 12px 5px;border-top:1px solid var(--line);font-size:13px}.helios-list li::marker{font-size:11px;color:var(--muted)}.helios-list li a{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none}.helios-list li a:hover{text-decoration:underline}.helios-list li .material-symbols-outlined{font-size:17px}.helios-list small{color:var(--muted)}
+#about{background:none;padding-top:60px}.about-section>.editorial-break{grid-column:1/-1;position:relative;width:100%;margin:0 0 35px;min-height:360px}.editorial-break img{width:100%;height:100%;object-fit:cover}.editorial-break figcaption{position:absolute;left:5%;top:50%;transform:translateY(-50%);width:43%;color:#41453e}.editorial-break blockquote{font-family:'Noto Serif JP',serif;font-size:clamp(20px,2.1vw,30px);font-weight:500;line-height:2;letter-spacing:.06em;margin:20px 0}.editorial-break .photo-note{font-size:12px;margin-top:28px}.editorial-break .quote-source{font-size:10px;margin-top:5px;color:#63695e}.work-image.craft-slides img{object-fit:contain!important;background:#101929}
+@media(max-width:900px){.archive-intro{grid-template-columns:1fr;gap:12px}.about-section>.editorial-break{min-height:0}.editorial-break blockquote{font-size:19px}.editorial-break figcaption{left:4%;width:45%}.editorial-break .photo-note{margin-top:16px;font-size:10px}}
+@media(max-width:600px){.helios-list{padding-inline:16px}.helios-list summary{font-size:14px;gap:10px}.helios-list ol{grid-template-columns:1fr}.archive-intro h3{font-size:19px}.archive-intro p{font-size:13px}.about-section>.editorial-break{margin-bottom:12px;overflow:visible;display:flex;flex-direction:column-reverse;background:#f7f5ef}.editorial-break figcaption{position:static;transform:none;width:100%;padding:27px 24px 0}.editorial-break blockquote{font-size:21px;line-height:1.85;margin:12px 0}.editorial-break .photo-note{margin-top:14px}.editorial-break img{height:auto}.editorial-break .quote-source{margin-bottom:10px}}
+@media(max-width:600px){#about.about-section{padding-inline:0}.editorial-break figcaption{padding-inline:22px}.editorial-break blockquote{font-size:19px;letter-spacing:.035em}}
+
+.work-image.enginepot-card img{object-fit:contain!important;background:#f5f6fa}
+
+.work-image.craft-slides img{object-fit:contain!important;background:#f5f5f5}.work-image.sushi img{object-position:center top!important}
+
+.site-header nav{background:transparent!important}
+/* Reading flow: each support topic uses the full text column. */
+#support .support-copy,#support .learning-project,#support .other-work dl{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+#support .support-copy,#support .other-work,#support .learning-project{max-width:820px;margin-inline:auto}
+#support .support-copy h3{font-family:'Noto Sans JP',sans-serif;font-size:22px;line-height:1.65}
+#support .support-copy p,#support .other-work dd,#support .learning-project p:not(.eyebrow){font-size:16px;line-height:2;word-break:normal;overflow-wrap:anywhere}
+#support .learning-project-art{max-width:680px;width:100%;margin-top:12px}
+#support .learning-project-art .work-image{aspect-ratio:16/10}
+@media(max-width:600px){#support .support-copy h3{font-size:19px}#support .support-copy p,#support .other-work dd,#support .learning-project p:not(.eyebrow){font-size:14px}}
+
+.project-total{display:flex;align-items:baseline;gap:8px;margin-top:14px}.project-total strong{font-family:var(--serif);font-size:48px;font-weight:400;line-height:1}.project-total span{font-size:13px}
