@@ -36,7 +36,7 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
 }
 
 function navigateProject(direction){
- const buttons=[...document.querySelectorAll('.work-card [data-project]')];
+ const buttons=[...document.querySelectorAll('.work-card [data-project], #support [data-project]')].filter((b,i,all)=>all.findIndex(x=>x.dataset.project===b.dataset.project)===i);
  const current=buttons.findIndex(b=>b.dataset.project===project.id);
  if(current<0)return;
  const target=buttons[(current+direction+buttons.length)%buttons.length];
