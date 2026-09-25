@@ -110,3 +110,5 @@ body{padding-left:150px}.site-header{min-height:148px}.wrap{width:min(1120px,90%
 .career-project-count{margin-top:10px!important;font-size:13px!important;color:var(--muted)}.career-project-count strong{font-size:16px;font-weight:500;color:var(--ink);margin-left:6px}
 
 #support .support-copy p,#support .learning-project p:not(.eyebrow){text-wrap:pretty}
+
+.archive-description{font-size:15px;line-height:1.9;margin-top:22px;color:var(--muted);max-width:none}.learning-project .app-link{justify-self:start;margin-top:8px}.learning-project{padding-bottom:10px}
