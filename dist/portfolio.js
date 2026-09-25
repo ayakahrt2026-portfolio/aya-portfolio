@@ -43,3 +43,14 @@ function navigateProject(direction){
  navigatingProject=true;openProject(target);navigatingProject=false;
  if(direction<0)imageAt(project.images.length-1);
 }
+
+// Keep mobile navigation independent from the desktop index.
+const mobileMenu=document.getElementById('mobile-menu');
+const menuToggle=document.getElementById('menu-toggle');
+const closeMenu=()=>mobileMenu.close();
+menuToggle.addEventListener('click',()=>{mobileMenu.showModal();menuToggle.setAttribute('aria-expanded','true');document.body.classList.add('menu-open')});
+document.getElementById('menu-close').addEventListener('click',closeMenu);
+mobileMenu.addEventListener('click',event=>{if(event.target===mobileMenu){const r=mobileMenu.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right)closeMenu()}});
+mobileMenu.querySelectorAll('nav a').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const target=document.querySelector(link.hash);closeMenu();requestAnimationFrame(()=>{target?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});history.replaceState(null,'',link.hash)})}));
+mobileMenu.addEventListener('close',()=>{menuToggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')});
+matchMedia('(min-width:901px)').addEventListener('change',event=>{if(event.matches&&mobileMenu.open)closeMenu()});
