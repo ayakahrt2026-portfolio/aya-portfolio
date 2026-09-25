@@ -57,3 +57,5 @@ body{font-size:16px}.eyebrow{font-size:12px}.site-header nav>a{font-size:14px}.b
 @media(min-width:901px){#project-dialog[open]{grid-template-rows:60px minmax(0,1fr)76px}.project-detail{grid-row:2/4}}
 /* Image-only gallery: uniform gutters in both directions. */
 .instagram-grid{gap:4px}.instagram-grid .work-card,.instagram-grid .work-open{margin:0;padding:0}@media(max-width:600px){.instagram-grid{gap:3px}}
+
+.screen img,.screen.is-entering img{animation:none!important;opacity:1;transform:none!important;transition:opacity .28s cubic-bezier(.2,.65,.3,1)}.screen.is-switching img{opacity:0}.image-description{min-height:2em}@media(prefers-reduced-motion:reduce){.screen img{transition:none}}
