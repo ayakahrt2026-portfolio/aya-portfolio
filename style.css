@@ -121,3 +121,5 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 .opening-intro{border-top:0}
 @media(max-width:900px){.hero>.hero-portrait{left:auto;right:-60px;bottom:-50px;width:330px;height:370px}}
 @media(max-width:600px){.hero h1{font-size:68px}}
+
+.opening-intro{text-align:left}.opening-intro p{margin:0;font-size:16px;line-height:2}
