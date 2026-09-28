@@ -26,7 +26,7 @@ document.getElementById('close-dialog').addEventListener('click',()=>dialog.clos
 
 // Animate separate content groups once as they enter the viewport.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
- const selector='.hero-copy,.hero-portrait,.section-heading,.reach-grid .work-card,.instagram-grid .work-card,.support-topic,.personal-copy,.line-categories>a,.skill-capabilities article,.tools-heading,.skill-row,.qualification,.editorial-break,.about-title,.about-text,.career-list>li,.contact-inner>div,.contact-form,.site-footer';
+ const selector='.section-heading,.reach-grid .work-card,.instagram-grid .work-card,.support-topic,.personal-copy,.line-categories>a,.skill-capabilities article,.tools-heading,.skill-row,.qualification,.editorial-break,.about-title,.about-text,.career-list>li,.contact-inner>div,.contact-form,.site-footer';
  const elements=[...document.querySelectorAll(selector)];
  const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('motion-visible');observer.unobserve(entry.target)}});
