@@ -146,3 +146,6 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
  .hero-scroll{animation:opening-build .8s ease 4.4s both}
 }
 @media(prefers-reduced-motion:reduce){.hero-copy .write-character{opacity:1;animation:none!important}.hero>.hero-portrait,.hero-scroll{animation:none!important}}
+
+/* Match the light strokes of the handwritten initial. */
+.hero h1{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:400;letter-spacing:-.035em}
