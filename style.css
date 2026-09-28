@@ -129,3 +129,42 @@ body{padding-left:150px}.site-header{min-height:148px}.wrap{width:min(1120px,90%
 .project-status{display:block;margin-top:8px;color:var(--muted);font-size:.9em}
 
 @media(max-width:600px){#support .support-copy p,#support .learning-project p:not(.eyebrow),#support .other-work dd{text-wrap:wrap;font-size:15px;line-height:1.9}#support .support-copy h3{text-wrap:wrap}.reach-work #support.wrap{width:90%}}
+
+/* 2026-09-28: mobile gallery and dialog are bounded by the viewport. */
+.skill-capabilities article>.material-symbols-outlined{font-size:42px;line-height:1.2;margin-bottom:18px}
+.contact-form>button[type="submit"]{width:auto;min-width:210px;max-width:100%;justify-self:start;justify-content:center;gap:24px;padding:14px 26px}
+.career-award{display:flex;align-items:flex-start;gap:8px;margin-top:16px!important;color:var(--sage)}
+.career-award .material-symbols-outlined{font-size:24px;flex:none;margin-top:3px}
+.onboarding-work{margin-bottom:48px}.onboarding-work .work-open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:30px;align-content:center}
+.onboarding-work .work-image{grid-row:1/4;aspect-ratio:4/3}.onboarding-work .card-meta{align-self:end}.onboarding-work h3{align-self:center}.onboarding-work .work-purpose{align-self:start}
+@media(max-width:900px){
+ #project-dialog{inset:0;width:100%;max-width:100%;height:100dvh;max-height:100dvh;margin:0;border:0;padding:0;overflow-x:hidden;overflow-y:auto;touch-action:pan-y;overscroll-behavior-x:none}
+ #project-dialog[open]{display:flex;flex-direction:column}
+ #project-dialog>*{width:100%;max-width:100%;min-width:0;flex-shrink:0}
+ #project-dialog .dialog-toolbar{height:auto;min-height:58px;padding:8px 12px;position:sticky;top:0;z-index:2;background:#fff;gap:10px}
+ #dialog-category{min-width:0;overflow-wrap:anywhere;font-size:12px}
+ #close-dialog{flex:0 0 48px}
+ #project-dialog .theater{height:auto;min-height:0;padding:12px 4px;grid-template-columns:44px minmax(0,1fr) 44px;grid-template-rows:minmax(0,1fr) auto}
+ #project-dialog .screen{height:42dvh;min-height:220px;width:100%;touch-action:pan-y;overflow:hidden}
+ #project-dialog .image-description{width:100%;min-width:0;overflow-wrap:anywhere;flex-wrap:wrap;line-height:1.6}
+ #project-dialog #filmstrip{display:flex;flex-wrap:wrap;overflow:hidden;height:auto;max-width:100%;justify-content:center;gap:6px;padding:10px 16px}
+ #project-dialog #filmstrip[hidden]{display:none}
+ #project-dialog #filmstrip button{flex:0 0 48px;width:48px;min-width:48px;height:48px;padding:3px}
+ #project-dialog #filmstrip img{width:40px;height:40px;object-fit:contain}
+ #project-dialog .project-detail{overflow:visible;height:auto;max-height:none;border-left:0;padding:24px 20px 36px;overflow-wrap:anywhere}
+ #project-dialog .project-meta{grid-template-columns:minmax(0,1fr)}
+ #project-dialog .project-meta>*{min-width:0}
+ #project-dialog .project-detail h2{font-size:22px;line-height:1.5}
+}
+@media(max-width:600px){
+ #archive.wrap{width:100%;max-width:100%}
+ #archive>.section-heading,#archive>.archive-intro{width:90%;margin-inline:auto}
+ #archive .instagram-grid{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#fff}
+ #archive .instagram-grid .work-image{aspect-ratio:3/4}
+ #archive .category-tag{font-size:9px;padding:3px 5px;left:4px;bottom:4px;max-width:calc(100% - 8px)}
+ #archive .open-cue{top:4px;right:4px;padding:3px}
+ .onboarding-work .work-open{display:block}.onboarding-work .work-image{aspect-ratio:4/3}
+ .contact-form>button[type="submit"]{min-width:0;width:auto;justify-self:start}
+}
+
+.line-categories>a{min-width:0;background:#fff}.line-categories img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:8px;background:#fff}.line-categories>a:last-child img{object-fit:contain}.line-category-name{padding:10px 12px}
