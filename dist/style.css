@@ -255,3 +255,6 @@ a,a:hover,a:focus-visible{text-decoration:none!important}
 @media(max-width:600px){.work-image>.open-cue,.instagram-grid .open-cue,#archive .open-cue,.line-categories .open-cue{top:4px;right:4px}}
 @media(prefers-reduced-motion:reduce){.hero-copy,.hero-portrait{animation:none}}
 @media(min-width:901px){.personal-section,.hero{padding-inline:0}.personal-copy{max-width:none}.line-categories{width:100%}}
+
+/* Keep the opening composition free of a short divider. */
+.hero{border-bottom:0}
