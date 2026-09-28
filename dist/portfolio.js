@@ -95,3 +95,49 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   nextStart+=character*.028+.65;
  });
 }
+
+// Keep visitors on the site and report only confirmed acceptance.
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+ const status = contactForm.querySelector('.form-status');
+ const submit = contactForm.querySelector('[type="submit"]');
+ let sending = false;
+ contactForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (sending || !contactForm.reportValidity()) return;
+  const name = contactForm.elements.name.value.trim();
+  const email = contactForm.elements.email.value.trim();
+  const message = contactForm.elements.message.value.trim();
+  if (!name || !message) {
+   status.hidden = false; status.textContent = 'お名前とご相談内容をご入力ください。'; return;
+  }
+  if (contactForm.elements._honey.value) return;
+  sending = true; submit.disabled = true;
+  const label = submit.innerHTML;
+  submit.textContent = '送信中…';
+  status.hidden = false; status.textContent = '送信しています。そのままお待ちください。';
+  contactForm.setAttribute('aria-busy', 'true');
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 30000);
+  try {
+   const response = await fetch('https://formsubmit.co/ajax/ayakahrt2025@gmail.com', {
+    method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    signal: controller.signal,
+    body: JSON.stringify({name, email, message, _replyto: email,
+     _subject: `ポートフォリオから${name.replace(/[\r\n]/g, '')}様よりお問い合わせが有りました`,
+     _template: 'table', _honey: ''})
+   });
+   const result = await response.json();
+   if (!response.ok || ![true, 'true'].includes(result.success) || /activat|confirm.*email/i.test(result.message || '')) throw new Error('not accepted');
+   contactForm.reset();
+   status.textContent = '正常に送信されました。お問い合わせありがとうございます。';
+  } catch (error) {
+   status.textContent = error.name === 'AbortError'
+    ? '送信結果を確認できませんでした。時間をおいてから再度お試しください。'
+    : '送信を完了できませんでした。入力内容は残っています。時間をおいてから再度お試しください。';
+  } finally {
+   clearTimeout(timer); sending = false; submit.disabled = false;
+   submit.innerHTML = label; contactForm.removeAttribute('aria-busy');
+  }
+ });
+}
