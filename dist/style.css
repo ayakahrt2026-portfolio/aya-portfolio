@@ -62,3 +62,11 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 }
 @keyframes character-write{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.hero-copy .write-character{opacity:1;animation:none!important}}
+
+/* Let each completed group breathe; the CTA appears as one complete element. */
+@media(min-width:901px){
+ .site-header nav{opacity:1;transform:none;pointer-events:auto;transition:none}
+ .hero-copy>.eyebrow{margin-bottom:1.8em}
+ .hero-copy>.button{animation:opening-build .8s ease var(--button-delay,5s) both!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-copy>.button{animation:none!important}}
