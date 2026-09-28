@@ -138,3 +138,11 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
  .opening-intro p{text-wrap:wrap;word-break:normal;overflow-wrap:break-word;letter-spacing:0;text-align:left}
 }
 @media(max-width:380px){.hero h1{font-size:60px}.hero>.hero-portrait{width:230px;height:265px}}
+
+@media(max-width:900px){
+ .hero-copy>*,.hero-lettering{animation:none!important;filter:none;clip-path:none}
+ .hero-copy .write-character{opacity:0;animation:character-write .12s linear var(--character-delay) both}
+ .hero>.hero-portrait{animation:background-art-mobile 2.8s cubic-bezier(.22,1,.36,1) 3.1s both}
+ .hero-scroll{animation:opening-build .8s ease 4.4s both}
+}
+@media(prefers-reduced-motion:reduce){.hero-copy .write-character{opacity:1;animation:none!important}.hero>.hero-portrait,.hero-scroll{animation:none!important}}
