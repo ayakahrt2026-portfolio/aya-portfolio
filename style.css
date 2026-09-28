@@ -128,3 +128,13 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 
 /* Logo thumbnails: preserve the complete artwork and fill one axis. */
 .work-image.craft img,.work-image.sunrise img,.work-image.clinic img{object-fit:contain;padding:0;background:#fff}.work-open:hover .work-image.craft img,.work-open:hover .work-image.sunrise img,.work-open:hover .work-image.clinic img{transform:none}
+
+/* Mobile opening: keep the drawing clear of the scroll cue and viewport edge. */
+@media(max-width:900px){
+ .hero{padding:0 20px 250px;min-height:600px}
+ .hero>.hero-portrait{right:16px;bottom:100px;width:250px;height:285px}
+ .hero-scroll{bottom:20px;height:56px}
+ .opening-intro{width:auto;margin-inline:20px;padding-block:48px}
+ .opening-intro p{text-wrap:wrap;word-break:normal;overflow-wrap:break-word;letter-spacing:0;text-align:left}
+}
+@media(max-width:380px){.hero h1{font-size:60px}.hero>.hero-portrait{width:230px;height:265px}}
