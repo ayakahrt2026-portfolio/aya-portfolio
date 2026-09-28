@@ -113,3 +113,11 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 @keyframes background-art{from{opacity:0;filter:blur(18px);transform:translateY(20px)}to{opacity:.68;filter:blur(0);transform:none}}
 @media(max-width:900px){.hero>.hero-portrait{width:360px;height:410px;left:-70px;bottom:-40px;opacity:.45;animation-name:background-art-mobile}}
 @keyframes background-art-mobile{from{opacity:0;filter:blur(14px);transform:translateY(15px)}to{opacity:.45;filter:blur(0);transform:none}}
+
+/* Final opening proportions: quieter title and lower-right artwork. */
+.hero h1{font-size:clamp(76px,8vw,108px)}
+.hero>.hero-portrait{left:auto;right:-20px;bottom:-65px;width:clamp(350px,35vw,460px);height:clamp(390px,39vw,490px)}
+.hero>.hero-portrait img{object-position:right bottom}
+.opening-intro{border-top:0}
+@media(max-width:900px){.hero>.hero-portrait{left:auto;right:-60px;bottom:-50px;width:330px;height:370px}}
+@media(max-width:600px){.hero h1{font-size:68px}}
