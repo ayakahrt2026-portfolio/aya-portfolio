@@ -125,3 +125,6 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 .opening-intro{text-align:left}.opening-intro p{margin:0;font-size:16px;line-height:2}
 
 .opening-intro p{text-wrap:pretty}
+
+/* Logo thumbnails: preserve the complete artwork and fill one axis. */
+.work-image.craft img,.work-image.sunrise img,.work-image.clinic img{object-fit:contain;padding:0;background:#fff}.work-open:hover .work-image.craft img,.work-open:hover .work-image.sunrise img,.work-open:hover .work-image.clinic img{transform:none}
