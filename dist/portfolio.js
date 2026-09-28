@@ -24,15 +24,22 @@ function openProject(button){project=projects.find(p=>p.id===button.dataset.proj
 document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click',()=>openProject(b)));
 document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());document.getElementById('previous-image').addEventListener('click',()=>imageAt(index-1));document.getElementById('next-image').addEventListener('click',()=>imageAt(index+1));dialog.addEventListener('close',()=>{version++;document.body.classList.remove('modal-open');opener?.focus({preventScroll:true})});dialog.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();imageAt(index+(e.key==='ArrowRight'?1:-1))}});
 
-// Reveal once, with CSS doing the animation. No scroll-loop or layout updates.
+// Animate separate content groups once as they enter the viewport.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
- const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-  if(entry.isIntersecting){entry.target.classList.remove('reveal-pending');entry.target.classList.add('reveal-visible');revealObserver.unobserve(entry.target);}
- }),{threshold:0.06,rootMargin:'0px 0px -24px 0px'});
- document.querySelectorAll('.work-card,.section-heading,.reach-intro,.reach-roles,.support-copy,.onboarding-images,.about-section,.skill-row,.personal-work').forEach(el=>{
-  if(el.getBoundingClientRect().top>innerHeight){el.classList.add('reveal-pending');revealObserver.observe(el);}
+ const selector='.hero-copy,.hero-portrait,.section-heading,.reach-grid .work-card,.instagram-grid .work-card,.support-copy,.other-work,.learning-project,.onboarding-work,.personal-copy,.line-categories>a,.skill-capabilities article,.tools-heading,.skill-row,.qualification,.editorial-break,.about-title,.about-text,.career-list>li,.contact-inner>div,.contact-form,.site-footer';
+ const elements=[...document.querySelectorAll(selector)];
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('motion-visible');observer.unobserve(entry.target)}});
+ },{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
+ elements.forEach(el=>{
+  el.classList.add('motion-ready');
+  if(el.matches('.work-card,.skill-capabilities article,.line-categories>a')){
+   const siblings=[...el.parentElement.children];el.style.setProperty('--reveal-delay',`${Math.min(siblings.indexOf(el)%4,3)*65}ms`);
+  }
+  if(el.matches('.hero-portrait,.editorial-break'))el.classList.add('motion-soft');
+  observer.observe(el);
  });
- window.addEventListener('beforeprint',()=>document.querySelectorAll('.reveal-pending').forEach(el=>el.classList.remove('reveal-pending')));
+ window.addEventListener('beforeprint',()=>elements.forEach(el=>el.classList.add('motion-visible')));
 }
 
 function navigateProject(direction){
