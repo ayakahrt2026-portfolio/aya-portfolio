@@ -123,3 +123,5 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 @media(max-width:600px){.hero h1{font-size:68px}}
 
 .opening-intro{text-align:left}.opening-intro p{margin:0;font-size:16px;line-height:2}
+
+.opening-intro p{text-wrap:pretty}
