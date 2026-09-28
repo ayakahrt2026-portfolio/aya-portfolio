@@ -78,21 +78,12 @@ mobileMenu.addEventListener('close',()=>{
 });
 matchMedia('(min-width:901px)').addEventListener('change',event=>{if(event.matches&&mobileMenu.open)closeMenu()});
 
-// Reveal the desktop index only once the opening composition has passed.
-const workStart=document.getElementById('work');
-if(workStart){
- let indexFrame=0;
- const updateIndex=()=>{indexFrame=0;document.body.classList.toggle('index-visible',workStart.getBoundingClientRect().top<=180)};
- window.addEventListener('scroll',()=>{if(!indexFrame)indexFrame=requestAnimationFrame(updateIndex)},{passive:true});
- window.addEventListener('resize',updateIndex);
- updateIndex();
-}
-
 // Write the opening copy in reading order without blurring text.
 if(matchMedia('(min-width:901px)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const blocks=document.querySelectorAll('.hero-copy > *');
  let nextStart=.2;
  blocks.forEach(block=>{
+  if(block.classList.contains('button')){block.style.setProperty('--button-delay',`${nextStart}s`);return;}
   const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT);
   const nodes=[];while(walker.nextNode()){const n=walker.currentNode;if(n.textContent.trim()&&!n.parentElement.closest('.button>span[aria-hidden]'))nodes.push(n)}
   let character=0;
@@ -101,6 +92,6 @@ if(matchMedia('(min-width:901px)').matches&&!matchMedia('(prefers-reduced-motion
    for(const letter of node.textContent){const span=document.createElement('span');span.className='write-character';span.textContent=letter;span.style.setProperty('--character-delay',`${nextStart+character*.028}s`);fragment.append(span);character++}
    const run=document.createElement("span");run.className="written-run";run.append(fragment);node.replaceWith(run);
   });
-  nextStart+=Math.min(character*.028,.85)+.12;
+  nextStart+=character*.028+.65;
  });
 }
