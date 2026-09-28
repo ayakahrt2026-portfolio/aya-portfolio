@@ -227,3 +227,31 @@ a,a:hover,a:focus-visible{text-decoration:none!important}
  .about-section{padding-inline:8%}
  .skill-capabilities article{padding-inline:35px}
 }
+
+/* Shared image controls, two desktop content widths, and opening sequence. */
+.work-image>.open-cue,.instagram-grid .open-cue,#archive .open-cue,.line-categories .open-cue{top:10px;right:10px;bottom:auto;left:auto}
+.line-categories>a{position:relative;display:block;overflow:hidden}
+.line-categories .category-tag{left:0;bottom:0;top:auto}
+.line-categories img{display:block;margin:0;padding:0}
+.career-section{display:block}
+.career-section>div:first-child{margin-bottom:36px}
+.career-section h2{margin-top:10px}
+@media(min-width:901px){
+ :root{--content-wide:90vw;--content-narrow:min(820px,calc(100vw - 360px))}
+ .wrap,.reach-work #support.wrap{width:var(--content-wide);max-width:none;margin-inline:auto}
+ .hero,.career-section.wrap,.contact-inner{width:var(--content-narrow);max-width:none;margin-inline:auto}
+ .career-list{width:100%;max-width:none}
+ #support .support-topic>.eyebrow,#support .support-topic>h3,#support .support-topic>p:not(.eyebrow),.personal-copy{width:var(--content-narrow);max-width:none;margin-inline:auto}
+ #support .support-topic>.support-link{margin-left:calc((100% - var(--content-narrow))/2);max-width:var(--content-narrow)}
+ #about.about-section{padding-inline:0;grid-template-columns:1fr;gap:28px}
+ .about-title,.about-text{width:var(--content-narrow);margin-inline:auto}
+ .about-section>.editorial-break{width:100%}
+ .hero-portrait{max-width:none}
+}
+.hero-copy{animation:hero-copy-arrive 1.6s cubic-bezier(.22,1,.36,1) .15s both}
+.hero-portrait{animation:hero-art-arrive 2s cubic-bezier(.22,1,.36,1) .35s both}
+@keyframes hero-copy-arrive{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes hero-art-arrive{from{opacity:0;transform:translate3d(0,12px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@media(max-width:600px){.work-image>.open-cue,.instagram-grid .open-cue,#archive .open-cue,.line-categories .open-cue{top:4px;right:4px}}
+@media(prefers-reduced-motion:reduce){.hero-copy,.hero-portrait{animation:none}}
+@media(min-width:901px){.personal-section,.hero{padding-inline:0}.personal-copy{max-width:none}.line-categories{width:100%}}
