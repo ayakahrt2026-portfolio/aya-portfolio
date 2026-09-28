@@ -79,7 +79,7 @@ mobileMenu.addEventListener('close',()=>{
 matchMedia('(min-width:901px)').addEventListener('change',event=>{if(event.matches&&mobileMenu.open)closeMenu()});
 
 // Write the opening copy in reading order without blurring text.
-if(matchMedia('(min-width:901px)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const blocks=document.querySelectorAll('.hero-copy > *');
  let nextStart=.2;
  blocks.forEach(block=>{
