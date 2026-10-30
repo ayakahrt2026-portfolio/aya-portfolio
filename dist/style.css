@@ -151,7 +151,7 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 .hero h1{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:400;letter-spacing:-.035em}
 
 /* Consultation copy shares the existing content width and typography. */
-.service-note{margin:40px 0;max-width:70ch}.service-note h3{font-size:1.2rem;margin-bottom:16px}.service-note p,.contact-invitation{line-height:1.9}.learning-note{margin-top:16px;color:#666;font-size:.9rem}.contact-invitation{margin-top:24px;max-width:32ch}
+.service-note{margin:40px 0;max-width:100ch}.service-note h3{font-size:1.2rem;margin-bottom:16px}.service-note p,.contact-invitation{line-height:1.9}.learning-note{margin-top:16px;color:#666;font-size:.9rem}.contact-invitation{margin-top:24px;max-width:32ch}
 
 /* Dialog motion: gentle arrival, shorter departure, no layout animation. */
 #project-dialog[open]{animation:lightbox-arrive .52s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 48%}
