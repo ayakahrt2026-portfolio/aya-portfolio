@@ -1,6 +1,20 @@
 const projects=JSON.parse(document.getElementById('project-data').textContent);
 const dialog=document.getElementById('project-dialog'),frame=document.getElementById('dialog-image'),screen=document.querySelector('.screen'),strip=document.getElementById('filmstrip');
 let project,index=0,opener,version=0,start,navigatingProject=false;
+
+// Keep the modal in the top layer until its exit motion finishes.
+const reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const closingDialogs=new WeakSet();
+function closeWithMotion(element){
+ if(!element.open||closingDialogs.has(element))return;
+ closingDialogs.add(element);
+ element.classList.add('is-closing');
+ const finish=()=>{element.close();element.classList.remove('is-closing');closingDialogs.delete(element)};
+ if(reducedMotion()){finish();return;}
+ const animation=element.getAnimations().find(a=>a.effect?.target===element);
+ if(animation)animation.finished.catch(()=>{}).then(finish);else finish();
+}
+
 async function imageAt(i){
  if(i<0||i>=project.images.length){navigateProject(i<0?-1:1);return;}
  index=i;const currentProject=project,image=currentProject.images[i],v=++version;
@@ -8,7 +22,7 @@ async function imageAt(i){
  const nextImage=new Image();nextImage.src=image.src;
  screen.classList.remove('is-entering');
  screen.classList.add('is-switching');
- await Promise.all([nextImage.decode().catch(()=>{}),new Promise(resolve=>setTimeout(resolve,reduced?0:160))]);
+ await Promise.all([nextImage.decode().catch(()=>{}),new Promise(resolve=>setTimeout(resolve,reduced?0:240))]);
  if(v!==version||!dialog.open)return;
  frame.src=image.src;frame.alt=image.caption;
  document.getElementById('image-caption').textContent=image.caption;
@@ -21,8 +35,9 @@ async function imageAt(i){
  const adjacent=currentProject.images[i+1];if(adjacent){const preload=new Image();preload.src=adjacent.src;preload.decode().catch(()=>{});}
 }
 function openProject(button){project=projects.find(p=>p.id===button.dataset.project);if(!project)return;opener=button;document.getElementById('dialog-category').textContent=project.media;for(const [id,val] of [['project-title',project.title],['project-date',project.date],['project-lead',project.lead],['project-role',project.role],['project-scale',project.scale]])document.getElementById(id).textContent=val;document.getElementById('project-tools-row').hidden=!project.tools;document.getElementById('project-tools').textContent=project.tools||'';const body=document.getElementById('project-body');body.replaceChildren();project.body.forEach(([title,copy])=>{const h=document.createElement('h3'),p=document.createElement('p');h.textContent=title;p.textContent=copy;body.append(h,p)});const link=document.getElementById('project-link');link.hidden=!project.link;if(project.link){link.href=project.link[0];link.textContent=project.link[1]+' ↗'}else link.removeAttribute('href');strip.replaceChildren();project.images.forEach((img,i)=>{const b=document.createElement('button'),im=document.createElement('img');b.type='button';b.setAttribute('aria-label',img.caption);im.src=img.src;im.alt='';b.append(im);b.addEventListener('click',()=>imageAt(i));strip.append(b)});strip.hidden=project.images.length<2;if(!dialog.open)dialog.showModal();document.body.classList.add('modal-open');dialog.scrollTop=0;document.querySelector(".project-detail").scrollTop=0;imageAt(Number(button.dataset.slide)||0);if(!navigatingProject)document.getElementById('close-dialog').focus({preventScroll:true});}
+dialog.addEventListener('cancel',event=>{event.preventDefault();closeWithMotion(dialog)});
 document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click',()=>openProject(b)));
-document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());document.getElementById('previous-image').addEventListener('click',()=>imageAt(index-1));document.getElementById('next-image').addEventListener('click',()=>imageAt(index+1));dialog.addEventListener('close',()=>{version++;document.body.classList.remove('modal-open');opener?.focus({preventScroll:true})});dialog.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();imageAt(index+(e.key==='ArrowRight'?1:-1))}});
+document.getElementById('close-dialog').addEventListener('click',()=>closeWithMotion(dialog));document.getElementById('previous-image').addEventListener('click',()=>imageAt(index-1));document.getElementById('next-image').addEventListener('click',()=>imageAt(index+1));dialog.addEventListener('close',()=>{version++;document.body.classList.remove('modal-open');opener?.focus({preventScroll:true})});dialog.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();imageAt(index+(e.key==='ArrowRight'?1:-1))}});
 
 // Animate separate content groups once as they enter the viewport.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -42,20 +57,28 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
  window.addEventListener('beforeprint',()=>elements.forEach(el=>el.classList.add('motion-visible')));
 }
 
-function navigateProject(direction){
+let projectTransition=false;
+async function navigateProject(direction){
+ if(projectTransition||closingDialogs.has(dialog))return;
+ projectTransition=true;
+ dialog.classList.add('project-changing');
+ await new Promise(resolve=>setTimeout(resolve,reducedMotion()?0:220));
+ if(!dialog.open||closingDialogs.has(dialog)){dialog.classList.remove('project-changing');projectTransition=false;return;}
  const buttons=[...document.querySelectorAll('.work-card [data-project], #support [data-project]')].filter((b,i,all)=>all.findIndex(x=>x.dataset.project===b.dataset.project)===i);
  const current=buttons.findIndex(b=>b.dataset.project===project.id);
- if(current<0)return;
+ if(current<0){dialog.classList.remove('project-changing');projectTransition=false;return;}
  const target=buttons[(current+direction+buttons.length)%buttons.length];
  navigatingProject=true;openProject(target);navigatingProject=false;
  if(direction<0)imageAt(project.images.length-1);
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{dialog.classList.remove('project-changing');projectTransition=false}));
 }
 
 // Keep mobile navigation independent from the desktop index.
 const mobileMenu=document.getElementById('mobile-menu');
 const menuToggle=document.getElementById('menu-toggle');
-const closeMenu=()=>mobileMenu.close();
-menuToggle.addEventListener('click',()=>{mobileMenu.showModal();menuToggle.setAttribute('aria-expanded','true');document.body.classList.add('menu-open')});
+const closeMenu=()=>closeWithMotion(mobileMenu);
+mobileMenu.addEventListener('cancel',event=>{event.preventDefault();closeMenu()});
+menuToggle.addEventListener('click',()=>{if(mobileMenu.open)return;mobileMenu.showModal();menuToggle.setAttribute('aria-expanded','true');document.body.classList.add('menu-open')});
 document.getElementById('menu-close').addEventListener('click',closeMenu);
 mobileMenu.addEventListener('click',event=>{if(event.target===mobileMenu){const r=mobileMenu.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right)closeMenu()}});
 let pendingSection=null;

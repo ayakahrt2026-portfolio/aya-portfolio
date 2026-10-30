@@ -152,3 +152,24 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 
 /* Consultation copy shares the existing content width and typography. */
 .service-note{margin:40px 0;max-width:70ch}.service-note h3{font-size:1.2rem;margin-bottom:16px}.service-note p,.contact-invitation{line-height:1.9}.learning-note{margin-top:16px;color:#666;font-size:.9rem}.contact-invitation{margin-top:24px;max-width:32ch}
+
+/* Dialog motion: gentle arrival, shorter departure, no layout animation. */
+#project-dialog[open]{animation:lightbox-arrive .52s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 48%}
+#project-dialog[open]::backdrop{animation:veil-arrive .42s ease both}
+#project-dialog.is-closing{animation:lightbox-leave .3s cubic-bezier(.4,0,.6,1) both;pointer-events:none}
+#project-dialog.is-closing::backdrop{animation:veil-leave .3s ease both}
+@keyframes lightbox-arrive{from{opacity:0;transform:translateY(20px) scale(.93)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes lightbox-leave{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(12px) scale(.965)}}
+@keyframes veil-arrive{from{opacity:0}to{opacity:1}}
+@keyframes veil-leave{from{opacity:1}to{opacity:0}}
+#mobile-menu[open]{animation:menu-arrive .48s cubic-bezier(.22,1,.36,1) both}
+#mobile-menu[open]::backdrop{animation:veil-arrive .4s ease both}
+#mobile-menu.is-closing{animation:menu-leave .32s cubic-bezier(.4,0,.6,1) both;pointer-events:none}
+#mobile-menu.is-closing::backdrop{animation:veil-leave .32s ease both}
+@keyframes menu-arrive{from{opacity:.5;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+@keyframes menu-leave{from{opacity:1;transform:translateX(0)}to{opacity:.5;transform:translateX(100%)}}
+.screen img{transition:opacity .24s ease,transform .42s cubic-bezier(.22,1,.36,1);transform:scale(1)}
+.screen.is-switching img{opacity:0;transform:scale(.98)}
+.project-detail,#filmstrip,.image-description{transition:opacity .22s ease}
+.project-changing .project-detail,.project-changing #filmstrip,.project-changing .image-description{opacity:0}
+@media(prefers-reduced-motion:reduce){#project-dialog[open],#mobile-menu[open]{animation:none;transform:none}.screen img{transform:none}}
