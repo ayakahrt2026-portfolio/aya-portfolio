@@ -1,4 +1,4 @@
-const tasks=[{title:'案内資料の見出しを整理する',minutes:30},{title:'Pythonの基本を1つ試す',minutes:20},{title:'今日の気づきをひと言残す',minutes:5}];
+const tasks=[{title:'SNS投稿の目的と読み手を書き出す',minutes:30},{title:'Pythonで課題リストの仕組みを1つ復習する',minutes:20},{title:'投稿案を振り返り、次に試すことを残す',minutes:5}];
 const list=document.getElementById('tasks');
 function updateCount(){document.getElementById('count').textContent=`${tasks.filter(t=>t.done).length} / ${tasks.length} 完了`;}
 function render(){list.replaceChildren();tasks.forEach(task=>{const row=document.createElement('label');row.className='task task-line';const box=document.createElement('input');box.type='checkbox';box.checked=!!task.done;const copy=document.createElement('span'),name=document.createElement('strong'),time=document.createElement('small');name.textContent=task.title;time.textContent=`目安 ${task.minutes}分`;copy.append(name,time);row.append(box,copy);row.classList.toggle('complete',box.checked);box.addEventListener('change',()=>{task.done=box.checked;row.classList.toggle('complete',box.checked);updateCount()});list.append(row)});updateCount()}
