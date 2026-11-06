@@ -181,3 +181,15 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 
 /* Learning overview */
 .school-progress{width:100%;margin:0 auto 56px}.school-progress h3{font-size:clamp(22px,2.2vw,28px);margin-bottom:20px}.school-lead{line-height:1.9}.school-updates{list-style:none;padding:0;margin:28px 0 32px}.school-updates li{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:baseline;padding:24px 0;border-top:1px solid var(--line)}.school-updates li:last-child{border-bottom:1px solid var(--line)}.school-period{font-size:14px;color:var(--muted)}.school-updates h4{font-size:18px;font-weight:500;line-height:1.8;margin:0}@media(min-width:901px){.skills-title-break{display:none}.skills-intro h3{font-size:clamp(20px,2.1vw,24px);white-space:nowrap}}@media(max-width:600px){.school-updates li{grid-template-columns:1fr;gap:8px;padding:20px 0}.school-updates h4{font-size:17px}}
+
+/* Shared reading column: section prose uses one width and one left edge. */
+@media(min-width:901px){
+ :root{--narrow:min(800px,calc(100vw - 520px))}
+ .opening-intro,.skills-intro,.service-note,.school-progress,.personal-copy,.about-title,.about-text,.career-section,.contact-inner{width:var(--narrow);max-width:100%;margin-inline:auto}
+ .skills-intro h3{white-space:normal}
+ .career-list>li{padding-left:0;border-left:0}
+ .career-list>li:before{left:-20px}
+}
+
+@media(min-width:901px){.skill-pathways{width:var(--narrow);margin-inline:auto}.site-header nav{max-width:180px}.support-topic>h3,.support-topic>p{max-width:100%}}
+@media(min-width:901px) and (max-width:1100px){.skill-pathways{grid-template-columns:1fr}.skill-pathways article:nth-child(even){border-left:0}.skill-pathways article+article{border-top:1px solid var(--line)}}
