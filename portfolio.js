@@ -119,3 +119,33 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
  });
 }
 
+
+// Reveal chapter headings without changing their text layout or reading order.
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+ const headings = document.querySelectorAll('.section-heading h2,.about-title h2,.career-section>div>.eyebrow,.career-section>div>h2,.contact-inner>div>h2');
+ const chapterObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) {
+   entry.target.classList.add('chapter-typed');
+   chapterObserver.unobserve(entry.target);
+  }
+ }, {threshold:0.15});
+ for (const heading of headings) {
+  const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  const count=Array.from(heading.textContent).length;
+  const interval=Math.min(42,1300/Math.max(1,count));
+  heading.setAttribute('aria-label',heading.textContent.trim());
+  let index=0;
+  for (const node of nodes) {
+   const fragment=document.createDocumentFragment();
+   for (const letter of Array.from(node.textContent)) {
+    const char=document.createElement('i');char.className='chapter-letter';
+    char.textContent=letter;char.setAttribute('aria-hidden','true');
+    char.style.setProperty('--letter-delay',`${index++*interval}ms`);
+    fragment.append(char);
+   }
+   node.replaceWith(fragment);
+  }
+  heading.classList.add('chapter-typing');chapterObserver.observe(heading);
+ }
+}

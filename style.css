@@ -187,9 +187,21 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
  :root{--narrow:min(800px,calc(100vw - 520px))}
  .opening-intro,.skills-intro,.service-note,.school-progress,.personal-copy,.about-title,.about-text,.career-section,.contact-inner{width:var(--narrow);max-width:100%;margin-inline:auto}
  .skills-intro h3{white-space:normal}
- .career-list>li{padding-left:0;border-left:0}
- .career-list>li:before{left:-20px}
 }
 
-@media(min-width:901px){.skill-pathways{width:var(--narrow);margin-inline:auto}.site-header nav{max-width:180px}.support-topic>h3,.support-topic>p{max-width:100%}}
-@media(min-width:901px) and (max-width:1100px){.skill-pathways{grid-template-columns:1fr}.skill-pathways article:nth-child(even){border-left:0}.skill-pathways article+article{border-top:1px solid var(--line)}}
+@media(min-width:901px){.site-header nav{max-width:180px}.support-topic>h3,.support-topic>p{max-width:100%}}
+
+
+/* Timeline connects each dot to the next, drawing as its entry appears. */
+.career-list>li{border-left:0}
+.career-list>li:after{content:"";position:absolute;left:-.5px;top:13.5px;width:1px;height:100%;background:var(--line);transform-origin:top;transform:scaleY(1)}
+.career-list>li:last-child:after{display:none}
+.career-list>li.motion-ready:after{transform:scaleY(0);transition:transform 1.2s cubic-bezier(.22,1,.36,1) .15s}
+.career-list>li.motion-visible:after{transform:scaleY(1)}
+/* Inline letters preserve the heading's original font, width and line breaks. */
+.chapter-letter{font:inherit;font-style:normal}
+.chapter-typing .chapter-letter{opacity:0}
+.chapter-typing.chapter-typed .chapter-letter{animation:chapter-letter-in .3s ease-out both;animation-delay:var(--letter-delay)}
+@keyframes chapter-letter-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.chapter-typing .chapter-letter{opacity:1;animation:none!important}.career-list>li.motion-ready:after{transform:scaleY(1);transition:none}}
+@media print{.chapter-typing .chapter-letter{opacity:1;animation:none!important}.career-list>li.motion-ready:after{transform:scaleY(1)}}
