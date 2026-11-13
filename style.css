@@ -222,3 +222,5 @@ a.contact-platform:hover{background:#fafbf9;border-color:var(--sage)}
 
 /* Mobile reading: retain desktop typography and keep sentence endings together. */
 @media(max-width:600px){.mobile-phrase{white-space:nowrap}p{text-wrap:pretty}h3,h4{text-wrap:balance}}
+
+@media(max-width:600px){#project-body p{text-wrap:wrap}}
