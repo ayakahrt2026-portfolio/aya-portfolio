@@ -219,3 +219,6 @@ a.contact-platform:hover{background:#fafbf9;border-color:var(--sage)}
 .contact-platform-info .contact-platform-logo{max-width:none;height:22px}
 .contact-platform-note{font-size:10px;line-height:1.2;color:var(--muted)}
 @media(max-width:600px){.contact-invitation{text-align:left}.contact-invitation-line:first-child{display:block}.contact-invitation-separator{display:none}.contact-platforms{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:28px}.contact-platform{height:60px;padding:8px}.contact-platform-logo{max-width:82px;height:25px}.contact-logo-crowdworks{max-width:94px;height:38px}.contact-logo-lancers{max-width:96px}.contact-platform-info{padding:6px 4px;gap:6px}.contact-platform-info .contact-platform-logo{max-width:none;height:20px}.contact-platform-note{font-size:9px}}
+
+/* Mobile reading: retain desktop typography and keep sentence endings together. */
+@media(max-width:600px){.mobile-phrase{white-space:nowrap}p{text-wrap:pretty}h3,h4{text-wrap:balance}}
