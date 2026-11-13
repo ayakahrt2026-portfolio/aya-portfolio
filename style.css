@@ -211,9 +211,11 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 .contact-platform{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;height:64px;padding:12px;border:1px solid var(--line);background:#fff;transition:background .25s ease,border-color .25s ease}
 a.contact-platform:hover{background:#fafbf9;border-color:var(--sage)}
 .contact-platform:focus-visible{outline:2px solid var(--sage);outline-offset:4px}
-.contact-platform-logo{display:block;width:100%;max-width:112px;height:30px;object-fit:contain}
-.contact-logo-crowdworks{height:44px}
-.contact-platform-info{flex-direction:column;gap:3px;padding:8px 12px}
-.contact-platform-info .contact-platform-logo{height:23px}
+.contact-platform-logo{display:block;width:100%;max-width:100px;height:28px;object-fit:contain}
+.contact-logo-crowdworks{max-width:112px;height:44px}
+.contact-logo-lancers{max-width:118px}
+.contact-logo-discord{max-width:100px}
+.contact-platform-info{flex-direction:column;gap:6px;padding:8px 5px}
+.contact-platform-info .contact-platform-logo{max-width:none;height:22px}
 .contact-platform-note{font-size:10px;line-height:1.2;color:var(--muted)}
-@media(max-width:600px){.contact-platforms{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:28px}.contact-platform{height:60px;padding:8px}.contact-platform-logo{height:25px}.contact-logo-crowdworks{height:38px}.contact-platform-info{padding:6px 8px}.contact-platform-info .contact-platform-logo{height:21px}.contact-platform-note{font-size:9px}}
+@media(max-width:600px){.contact-platforms{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:28px}.contact-platform{height:60px;padding:8px}.contact-platform-logo{max-width:82px;height:25px}.contact-logo-crowdworks{max-width:94px;height:38px}.contact-logo-lancers{max-width:96px}.contact-platform-info{padding:6px 4px;gap:6px}.contact-platform-info .contact-platform-logo{max-width:none;height:20px}.contact-platform-note{font-size:9px}}
