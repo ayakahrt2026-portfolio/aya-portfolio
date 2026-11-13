@@ -206,11 +206,11 @@ body.modal-open,body.menu-open{overflow:hidden}#project-dialog{padding:0;border:
 @media(prefers-reduced-motion:reduce){.chapter-typing .chapter-letter{opacity:1;animation:none!important}.career-list>li.motion-ready:after{transform:scaleY(1);transition:none}}
 @media print{.chapter-typing .chapter-letter{opacity:1;animation:none!important}.career-list>li.motion-ready:after{transform:scaleY(1)}}
 
-/* Contact: equal-weight profile banners */
-.contact-platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 0 48px}
-.contact-platform{display:flex;flex-direction:column;justify-content:center;gap:14px;min-height:132px;padding:24px;border:1px solid var(--line);background:rgba(255,255,255,.78);text-align:center;transition:background .25s ease,border-color .25s ease}
-.contact-platform:hover{background:#fff;border-color:var(--sage)}
+/* Contact: compact, equal-weight service grid */
+.contact-platforms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 32px}
+.contact-platform{display:flex;flex-direction:column;justify-content:center;gap:5px;min-height:72px;padding:12px 10px;border:1px solid var(--line);background:rgba(255,255,255,.78);text-align:center;transition:background .25s ease,border-color .25s ease}
+a.contact-platform:hover{background:#fff;border-color:var(--sage)}
 .contact-platform:focus-visible{outline:2px solid var(--sage);outline-offset:4px}
-.contact-platform-name{font-size:20px;font-weight:500;line-height:1.5}
-.contact-platform-detail{font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:12px}
-@media(max-width:600px){.contact-platforms{gap:12px;margin-bottom:36px}.contact-platform{padding:20px 10px;min-height:116px}.contact-platform-name{font-size:15px}}
+.contact-platform-name{font-size:15px;font-weight:500;line-height:1.5}
+.contact-platform-detail{font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px}
+@media(max-width:600px){.contact-platforms{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:28px}.contact-platform{min-height:68px;padding:10px 8px}.contact-platform-name{font-size:14px}}
