@@ -14,7 +14,10 @@
   word-break: auto-phrase;
 }
 #goals h1 span { display: inline-block; }
-.intro-copy { max-width: 37em; }
+.intro-copy { max-inline-size: 46rem; }
+main p, #demo li { text-wrap: pretty; line-break: strict; }
+main > section > p, #demo > ul { max-inline-size: 46rem; }
+.phrase { white-space: nowrap; }
 .intro-copy p { margin: 0 0 .65em; }
 #goals .button { margin-top: 12px; max-width: 100%; }
 #services h2, #demo h2, .areas h3 { text-wrap: balance; word-break: auto-phrase; }
@@ -27,6 +30,7 @@
 @media (max-width: 700px) {
   .site-head { display: flex; }
   .site-head nav { max-width: none; margin: 0; }
+  .intro-copy br { display: none; }
   #goals h1 { font-size: clamp(25px, 7.4vw, 42px); }
   #goals h1 span { display: block; white-space: nowrap; }
   .areas { grid-template-columns: minmax(0, 1fr); }
@@ -37,7 +41,7 @@
 <section class="intro" id="goals">
   <h1><span>Web制作・顧客対応の</span> <span>業務委託</span></h1>
   <div class="intro-copy">
-    <p>WordPressの制作は、ヒアリングから構築・納品、操作講習、公開後の代理更新まで対応します。</p>
+    <p><span class="phrase">WordPressサイトは、</span><span class="phrase">ヒアリングから構築・納品まで対応。</span><br><span class="phrase">操作講習や</span><span class="phrase">公開後の代理更新も</span><span class="phrase">お任せいただけます。</span></p>
     <p>電話・メール・チャットの顧客対応もお引き受けできます。</p>
     <p>現在はInstagramの投稿企画とリール編集を強化しています。</p>
   </div>
@@ -45,7 +49,10 @@
 </section>
 <section id="services" aria-labelledby="scope-title">
   <h2 id="scope-title">業務委託で任せられる範囲</h2>
-  <p>Web制作・デザインと顧客対応は、実務経験のある工程からご依頼いただけます。SNS運用代行や納品環境に指定がある業務は、下記の条件をご確認ください。</p>
+  <div class="intro-copy">
+    <p><span class="phrase">Web制作・デザインと顧客対応は、</span><span class="phrase">実務経験のある工程から</span><span class="phrase">ご依頼いただけます。</span></p>
+    <p><span class="phrase">SNS運用代行や、</span><span class="phrase">納品環境に指定がある業務は、</span><span class="phrase">下記をご確認ください。</span></p>
+  </div>
   <div class="areas">
     <article>
       <h3>Web・グラフィックデザイン</h3>
