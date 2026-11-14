@@ -1,11 +1,47 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>私の学校｜学習と実践の記録</title><link rel="stylesheet" href="style.css?v=20261112-layout2"><script src="demo.js?v=20261115" defer></script><link rel="icon" type="image/svg+xml" href="assets/school-mark.svg"></head>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>私の学校｜学習と実践の記録</title><link rel="stylesheet" href="style.css?v=20261112-layout2"><script src="demo.js?v=20261115" defer></script><link rel="icon" type="image/svg+xml" href="assets/school-mark.svg"><style>
+.site-head nav a { white-space: nowrap; }
+#goals.intro {
+  min-height: 0;
+  padding: clamp(44px, 7vw, 84px) 0;
+  background-position: right bottom;
+  background-size: min(29%, 300px) auto;
+}
+#goals h1 {
+  font-size: clamp(32px, 5.2vw, 54px);
+  line-height: 1.35;
+  margin: 0 0 24px;
+  word-break: auto-phrase;
+}
+#goals h1 span { display: inline-block; }
+.intro-copy { max-width: 37em; }
+.intro-copy p { margin: 0 0 .65em; }
+#goals .button { margin-top: 12px; max-width: 100%; }
+#services h2, #demo h2, .areas h3 { text-wrap: balance; word-break: auto-phrase; }
+.areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.areas article { overflow-wrap: anywhere; min-width: 0; }
+#goals p, #services p { line-break: strict; word-break: auto-phrase; }
+@media (max-width: 800px) {
+  #goals.intro { background-image: none; }
+}
+@media (max-width: 700px) {
+  .site-head { display: flex; }
+  .site-head nav { max-width: none; margin: 0; }
+  #goals h1 { font-size: clamp(25px, 7.4vw, 42px); }
+  #goals h1 span { display: block; white-space: nowrap; }
+  .areas { grid-template-columns: minmax(0, 1fr); }
+}
+</style></head>
 <body><header class="site-head"><a href="../" class="brand"><img class="brand-mark" src="assets/school-mark.svg" alt=""><span>私の学校 <small>LEARNING JOURNAL</small></span><img class="brand-companions" src="assets/school-companions.svg" alt="春陽・陸空・紬をモチーフにした、うさぎ2匹とヨークシャーテリア"></a><nav><a href="#services">業務委託の範囲</a><a href="#demo">強化中のスキル</a><a href="https://my-school-aya.web.app/" target="_blank" rel="noopener noreferrer">本人用アプリ ↗</a></nav></header>
 <main>
 <section class="intro" id="goals">
-  <h1>Web制作・顧客対応の業務委託</h1>
-  <p>WordPressサイトはヒアリングから構築・納品・操作講習・代理更新まで。電話・メール・チャットの顧客対応もお引き受けできます。支援範囲を広げるため、現在はInstagramの投稿企画とリール編集を強化しています。</p>
-  <a class="button" href="#services">任せられる業務と納品条件を見る ↓</a>
+  <h1><span>Web制作・顧客対応の</span> <span>業務委託</span></h1>
+  <div class="intro-copy">
+    <p>WordPressの制作は、ヒアリングから構築・納品、操作講習、公開後の代理更新まで対応します。</p>
+    <p>電話・メール・チャットの顧客対応もお引き受けできます。</p>
+    <p>現在はInstagramの投稿企画とリール編集を強化しています。</p>
+  </div>
+  <a class="button" href="#services">対応業務と納品条件を見る ↓</a>
 </section>
 <section id="services" aria-labelledby="scope-title">
   <h2 id="scope-title">業務委託で任せられる範囲</h2>
