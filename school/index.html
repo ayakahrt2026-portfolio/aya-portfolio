@@ -1,13 +1,41 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>私の学校｜学習と実践の記録</title><link rel="stylesheet" href="style.css?v=20261112-layout2"><script src="demo.js?v=20261112" defer></script><link rel="icon" type="image/svg+xml" href="assets/school-mark.svg"></head>
-<body><header class="site-head"><a href="../" class="brand"><img class="brand-mark" src="assets/school-mark.svg" alt=""><span>私の学校 <small>LEARNING JOURNAL</small></span><img class="brand-companions" src="assets/school-companions.svg" alt="春陽・陸空・紬をモチーフにした、うさぎ2匹とヨークシャーテリア"></a><nav><a href="#goals">学習目標</a><a href="#demo">操作デモ</a><a href="https://my-school-aya.web.app/" target="_blank" rel="noopener noreferrer">本人用アプリ ↗</a></nav></header>
-<main><section class="intro" id="goals"><p class="eyebrow">制作と顧客対応の経験から、次の学びへ</p><h1>つくる力と<br>支える力を広げる。</h1><p>学ぶ目的を決め、実際に試し、次の改善につなげる。<br>「私の学校」は、その過程を整理するための学習記録アプリです。</p><a class="button" href="#demo">学習の進め方を体験する ↓</a></section>
-<section><div class="section-heading"><span>01 / ROADMAP</span><h2>これから広げる4つの分野</h2></div><p class="muted">以下は本人が設定した方向性です。学習の完了や実務経験の獲得を示すものではありません。</p><div class="areas">
-<article><span class="symbol">✎</span><h3>制作</h3><p>Web・グラフィック制作の経験を土台に、Canvaや動画編集へ。</p><span class="status">制作の実務経験あり ／ 新しい技術を習得予定</span></article>
-<article><span class="symbol">◎</span><h3>マーケティング</h3><p>SNS運用の情報設計・発信・振り返りを学ぶ。</p><span class="status">目標：2027年中にSNSマーケティング検定取得</span></article>
-<article><img class="subject-icon" src="assets/python.svg" alt="Python"><h3>開発</h3><p>Pythonの基礎とAI活用を学び、自分で改善できる範囲を広げる。</p><span class="status">目標：プログラミングの基礎を身につける</span></article>
-<article><span class="symbol">◇</span><h3>サポート</h3><p>顧客対応・進行管理の経験を生かし、支援できる仕事を広げる。</p><span class="status">顧客対応の実務経験あり ／ バックオフィスは習得予定</span></article>
-</div></section>
-<section id="demo"><div class="section-heading"><span>02 / INTERACTIVE DEMO</span><h2>今どこまで進んだか。<br>次に何をするか。</h2></div><p>教材の現在地と記録がつながる操作デモです。一覧表の状態を変更して、進捗と次にやることの変化を試せます。</p><div class="sample-note">体験用の架空データです。本人の実績・予定・教材ではありません。入力内容は送信・保存されません。</div>
-<div class="demo-card"><div class="row"><div><span class="status">▤ 制作 / 操作サンプル</span><h3>伝わる画像をつくる練習</h3></div><button id="reset" class="secondary">最初に戻す</button></div><div class="metrics"><div><small>開始日（サンプル）</small><strong>2026.11.01</strong></div><div><small>確認済み</small><strong id="count">2 / 4項目</strong></div><div><small>教材の進捗</small><strong id="percent">50%</strong></div></div><progress id="progress" max="4" value="2" aria-label="サンプル教材の確認進捗"></progress><div class="location"><small>◎ 現在地</small><h3 id="current">読みやすさを確認する</h3><p>理解の深さや実務経験とは分けて、教材を確認した範囲を表示します。</p></div><div id="understanding-summary" class="location"></div><div id="steps"></div><div class="next"><small>→ 次にやること</small><strong id="next">文字の大きさと余白を見比べる</strong></div><label for="memo">✎ 試して気づいたこと（任意）</label><textarea id="memo" rows="2" placeholder="記録の入力体験。個人情報は入力しないでください。"></textarea><p class="muted">実際のアプリでは本人専用の保存先へ記録します。このデモは再読み込みでリセットされます。</p></div></section>
-<section class="features"><div class="section-heading"><span>03 / WHY I BUILT IT</span><h2>記録を探す時間を、学ぶ時間へ。</h2></div><div class="flow"><div><strong>目標</strong><p>何のために学ぶか</p></div><span>→</span><div><strong>学習内容・進捗</strong><p>どこから再開するか</p></div><span>→</span><div><strong>理解度・次の一歩</strong><p>試したことを残す</p></div></div><p>本人用アプリはGoogleログイン・非公開クラウド保存・学習記録の取り込みに対応しています。Googleカレンダーから学習予定を読み込み、その他の予定は空き時間の判定だけに使います。AI整理は送信内容を自分で確認してから実行できます。</p><p class="muted">使用技術：HTML・CSS・JavaScript / Firebase Authentication・Cloud Firestore・Hosting</p><a class="button" href="../#contact">制作・お仕事のご相談</a></section></main><footer>私の学校｜学習と実践の記録 <a href="../">ポートフォリオへ戻る</a></footer></body></html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>私の学校｜学習と実践の記録</title><link rel="stylesheet" href="style.css?v=20261112-layout2"><script src="demo.js?v=20261115" defer></script><link rel="icon" type="image/svg+xml" href="assets/school-mark.svg"></head>
+<body><header class="site-head"><a href="../" class="brand"><img class="brand-mark" src="assets/school-mark.svg" alt=""><span>私の学校 <small>LEARNING JOURNAL</small></span><img class="brand-companions" src="assets/school-companions.svg" alt="春陽・陸空・紬をモチーフにした、うさぎ2匹とヨークシャーテリア"></a><nav><a href="#goals">学習目標</a><a href="#demo">学習進捗・操作デモ</a><a href="#services">ご依頼できる業務</a><a href="https://my-school-aya.web.app/" target="_blank" rel="noopener noreferrer">本人用アプリ ↗</a></nav></header>
+<main>
+<section class="intro" id="goals">
+  <p class="eyebrow">私の学校｜学習と実践の記録</p>
+  <h1>Web制作とSNS発信を支援するクリエイティブオンライン秘書へ</h1>
+  <p>WebサイトやLP、バナーの制作経験と、ヒアリング・進行管理の経験を生かし、Instagramの投稿企画やショート動画編集まで相談を受けられるように学んでいます。</p>
+  <a class="button" href="#demo">現在の学習内容と進捗を見る ↓</a>
+</section>
+<section id="demo">
+  <div class="section-heading"><h2>現在の学習｜SNSマーケティング・動画編集</h2></div>
+  <p>Instagramで誰に何を届けるかを整理し、投稿テーマやリールの構成に落とし込む練習をしています。</p>
+  <div class="learning-overview">
+    <div><span>開始日</span><strong><time datetime="2026-11-06">2026年11月6日（金）</time></strong></div>
+    <div><span>受講状況</span><strong>全7回の実践プログラムを受講中</strong></div>
+    <div><span>全項目の受講完了予定</span><strong><time datetime="2026-12-25">2026年12月25日（金）</time></strong></div>
+  </div>
+  <ul>
+    <li><strong>提出済み</strong>　発信の目的、届けたい相手、投稿テーマをまとめたSNS設計図。</li>
+    <li><strong>取り組み中</strong>　Instagramの発信テーマを投稿企画に落とし込み、撮影した縦動画をリール向けに編集する練習。カットの順番やテンポ、字幕の入れ方を練習します。</li>
+  </ul>
+  <h3>学習記録アプリの操作デモ</h3>
+  <p>一覧の状態を変更すると、進捗と次に取り組む項目が切り替わります。</p>
+  <div class="sample-note">下の操作欄は体験用です。入力は保存・送信されません。</div>
+<div class="demo-card"><div class="row"><div><span class="status">練習項目の操作例</span><h3>Instagramの投稿企画とリール編集</h3></div><button id="reset" class="secondary">最初に戻す</button></div><div class="metrics"><div><small>操作対象</small><strong>体験用4項目</strong></div><div><small>確認済み</small><strong id="count">2 / 4項目</strong></div><div><small>デモ内の進捗</small><strong id="percent">50%</strong></div></div><progress id="progress" max="4" value="2" aria-label="サンプル教材の確認進捗"></progress><div class="location"><small>◎ 現在地</small><h3 id="current">縦動画のカットと字幕を調整する</h3><p>理解の深さや実務経験とは分けて、教材を確認した範囲を表示します。</p></div><div id="understanding-summary" class="location"></div><div id="steps"></div><div class="next"><small>→ 次にやること</small><strong id="next">撮影素材を短く切り、字幕で内容を補う</strong></div><label for="memo">✎ 試して気づいたこと（任意）</label><textarea id="memo" rows="2" placeholder="記録の入力体験。個人情報は入力しないでください。"></textarea><p class="muted">実際のアプリでは本人専用の保存先へ記録します。このデモは再読み込みでリセットされます。</p></div></section>
+<section id="services" class="features">
+  <div class="section-heading"><h2>現在ご依頼いただける業務</h2></div>
+  <div class="areas">
+    <article><h3>Webサイト・LP制作</h3><p>目的と掲載内容の整理、ページデザイン、STUDIOでの制作、修正対応。</p></article>
+    <article><h3>バナー・グラフィック制作</h3><p>Web広告バナー、サムネイル、ロゴ、名刺などのデザイン制作。</p></article>
+    <article><h3>ヒアリング・制作進行</h3><p>ご要望の整理、必要な素材の確認、スケジュール調整、修正内容の取りまとめ。</p></article>
+  </div>
+  <a class="button" href="../#contact">制作・お仕事のご相談</a>
+</section>
+<section>
+  <div class="section-heading"><h2>学習記録アプリの制作</h2></div>
+  <p>学習目標、教材の進捗、理解度、次にやることをまとめて確認できるアプリを制作しました。</p>
+  <p class="muted">使用技術　HTML・CSS・JavaScript／Firebase Authentication・Cloud Firestore・Hosting</p>
+</section>
+</main><footer>私の学校｜学習と実践の記録 <a href="../">ポートフォリオへ戻る</a></footer></body></html>
