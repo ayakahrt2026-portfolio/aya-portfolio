@@ -116,7 +116,7 @@ matchMedia('(min-width:901px)').addEventListener('change',event=>{if(event.match
 
 // Write the opening copy in reading order without blurring text.
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
- const blocks=document.querySelectorAll('.hero-copy > *');
+ const blocks=[];
  let nextStart=.2;
  blocks.forEach(block=>{
   if(block.classList.contains('button')){block.style.setProperty('--button-delay',`${nextStart}s`);return;}
@@ -162,3 +162,8 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
   heading.classList.add('chapter-typing');chapterObserver.observe(heading);
  }
 }
+
+const consult=document.createElement('a');
+consult.className='button case-consult';consult.href='#contact';consult.textContent='このような制作・支援を相談する';
+document.querySelector('.project-detail').append(consult);
+consult.addEventListener('click',event=>{event.preventDefault();dialog.close();scrollToSection(document.getElementById('contact'));});
