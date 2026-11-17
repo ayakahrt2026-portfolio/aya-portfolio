@@ -243,3 +243,17 @@ a.contact-platform:hover{background:#fafbf9;border-color:var(--sage)}
 @media(max-width:700px){.instagram-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:5%}.instagram-grid .work-purpose{font-size:14px}.instagram-grid h3{font-size:16px}}
 @media(min-width:901px){}
 @media(max-width:700px){}
+
+._txtc{text-align: center;}._txtr{text-align: left;}._txtl{text-align: light;}
+/* Text alignment utilities */
+._txtc{text-align:center;}
+._txtr{text-align:right;}
+._txtl{text-align:left;}
+
+/* Responsive line breaks: SP <= 600px, PC > 600px */
+br._SPblock{display:none;}
+br._PCblock{display:inline;}
+@media(max-width:600px){
+ br._SPblock{display:inline;}
+ br._PCblock{display:none;}
+}
