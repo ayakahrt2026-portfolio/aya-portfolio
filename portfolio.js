@@ -116,7 +116,7 @@ matchMedia('(min-width:901px)').addEventListener('change',event=>{if(event.match
 
 // Write the opening copy in reading order without blurring text.
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
- const blocks=[];
+ const blocks=document.querySelectorAll('.hero-copy > *');
  let nextStart=.2;
  blocks.forEach(block=>{
   if(block.classList.contains('button')){block.style.setProperty('--button-delay',`${nextStart}s`);return;}
