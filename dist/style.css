@@ -303,63 +303,9 @@ main .mobile-phrase{white-space:nowrap;}
  .process-note{text-align:center;margin-top:32px;}
 }
 
-/* Keep the consultation links in view on both wide and narrow screens. */
-.hero {
-  height: auto;
-  min-height: clamp(470px, calc(100svh - 154px), 660px);
-  padding: 52px max(24px, calc((100% - 820px) / 2)) 90px;
-}
-.hero-copy { max-width: 680px; }
-.hero-signature {
-  margin-bottom: 16px;
-  color: var(--muted);
-  font-size: 14px;
-}
-.hero-signature span { margin-left: 0.6em; }
-.hero h1 {
-  margin: 0 0 20px;
-  font: 600 clamp(24px, 4.2vw, 48px)/1.45 'Noto Serif JP', serif;
-  letter-spacing: normal;
-}
-.hero-description { max-width: 34em; margin: 0 auto 22px; line-height: 1.85; }
-.hero-actions, .service-web-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 20px;
-}
-.hero-actions { justify-content: center; }
-.hero-actions .button { min-height: 44px; background: #465c52; color: #fff; }
-.hero-actions .text-link { min-height: 44px; display: inline-flex; align-items: center; }
-.hero-scroll { bottom: 20px; height: 48px; }
-.service-web-links { margin-top: auto; }
-.service-web-links .text-link { margin: 0; }
-.wordpress-case-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(20px, 4vw, 52px);
-  padding: clamp(20px, 3vw, 36px);
-  border: 1px solid var(--line);
-  background: var(--paper);
-}
-.wordpress-case-card > img { display: block; width: 100%; height: auto; }
-.wordpress-case-copy h3 { margin: 0 0 12px; }
-.wordpress-case-copy p { margin: 0 0 12px; }
-.wordpress-case-copy .text-link { display: block; text-align: left; margin-top: 8px; }
-.contact-heading h2 { margin-bottom: 0; }
-.contact-form-guide { margin: 0; text-wrap: pretty; }
-.contact-alternatives { margin-top: 44px; }
-.contact-alternatives h3 { margin: 0 0 12px; }
-.contact-alternatives .contact-platforms { margin-bottom: 0; }
-#wordpress-case, #contact { scroll-margin-top: 24px; }
-@media (max-width: 900px) {
-  .hero { min-height: 0; padding: 38px 20px 198px; }
-  .hero > .hero-portrait { right: 12px; bottom: 36px; width: 182px; height: 176px; }
-  .hero-scroll { bottom: 16px; height: 38px; }
-}
-@media (max-width: 700px) {
-  .wordpress-case-card { grid-template-columns: minmax(0, 1fr); }
-  .hero-signature { font-size: 12px; }
-  .hero-actions { flex-direction: column; }
-}
+
+/* Preserve current contact layout while restoring the original opening. */
+.contact-heading h2{margin-bottom:0}.contact-form-guide{margin:0;text-wrap:pretty}.contact-alternatives{margin-top:44px}.contact-alternatives h3{margin:0 0 12px}.contact-alternatives .contact-platforms{margin-bottom:0}
+@media(max-width:600px){.hero-discipline{font-size:14px;letter-spacing:.04em;line-height:2}}
+
+.contact-copy-sp{display:none}@media(max-width:600px){.contact-copy-pc{display:none}.contact-copy-sp{display:inline}}
