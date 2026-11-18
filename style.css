@@ -320,3 +320,30 @@ main .mobile-phrase{white-space:nowrap;}
 @media(max-width:700px){.service-learning{padding:24px;margin-top:24px}.service-grid .service-addition{margin-top:20px}.service-examples{margin-top:20px}}
 
 @media(min-width:901px){.service-grid article>.text-link{margin-top:0}.service-examples{margin-top:0}}
+
+/* Desktop service rows avoid equal-height columns with unequal copy. */
+@media(min-width:901px){
+ #services .service-grid{grid-template-columns:minmax(0,1fr)}
+ #services .service-grid article{display:grid;grid-template-columns:minmax(180px,.9fr) minmax(0,1.6fr) minmax(180px,.8fr);column-gap:32px;row-gap:0;align-items:start;padding:32px 0;border-right:0}
+ #services .service-grid article>.eyebrow{grid-column:1;grid-row:1;margin:0 0 10px}
+ #services .service-grid article>h3{grid-column:1;grid-row:2;margin:0;overflow-wrap:normal}
+ #services .service-grid article>p:not(.eyebrow):not(.service-addition){grid-column:2;grid-row:1 / span 2;margin:0}
+ #services .service-grid article>.service-addition{grid-column:2;grid-row:3;margin:20px 0 0;padding-top:20px}
+ #services .service-grid article>.text-link,#services .service-examples{grid-column:3;grid-row:1 / span 3;margin:0;align-self:center}
+ #services .service-grid article>.text-link,#services .service-examples .text-link{padding:10px 0;margin:0;line-height:1.8}
+ #services .service-examples{gap:12px}
+}
+@media(min-width:901px) and (max-width:1200px){
+ #services .service-grid article{grid-template-columns:minmax(150px,.8fr) minmax(0,1.7fr);column-gap:28px}
+ #services .service-grid article>.text-link,#services .service-examples{grid-column:2;grid-row:4;margin-top:20px;align-self:start}
+}
+
+/* Five consecutive steps, read left to right on desktop. */
+@media(min-width:901px){
+ #process .process-list{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+ #process .process-list li{position:relative;border-top:0;padding:0;display:block}
+ #process .process-list li:before{display:flex;align-items:center;justify-content:center;height:60px;padding:0 18px 0 10px;box-sizing:border-box;background:#e9ede8;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%,14px 50%);font:24px var(--serif);color:var(--sage)}
+ #process .process-list li:first-child:before{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%)}
+ #process .process-list h3{margin:20px 0 12px;min-height:2.9em;display:flex;align-items:center;padding-inline:8px;line-height:1.45}
+ #process .process-list p{margin:0;padding-inline:8px;line-height:2}
+}
