@@ -349,3 +349,20 @@ main .mobile-phrase{white-space:nowrap;}
 }
 
 @media(min-width:901px) and (max-width:1200px){#process .process-list li:last-child .reading-unit{white-space:normal}}
+
+/* Keep the process readable on compact desktop screens. */
+@media(min-width:901px) and (max-width:1400px){
+ #process .process-list{grid-template-columns:repeat(5,240px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:auto;scrollbar-color:var(--sage) #e9ede8;padding-bottom:20px}
+ #process .process-list li{scroll-snap-align:start}
+ #process .process-list h3{white-space:nowrap}
+ #process .process-list li:last-child .reading-unit{white-space:nowrap}
+ #process .process-list::-webkit-scrollbar{height:12px}
+ #process .process-list::-webkit-scrollbar-track{background:#e9ede8;border-radius:6px}
+ #process .process-list::-webkit-scrollbar-thumb{background:#74867b;border-radius:6px;border:2px solid #e9ede8}
+}
+
+@media(min-width:901px){
+ #process .process-list li:before{content:'STEP' counter(steps);letter-spacing:.04em}
+}
+
+.process-scroll-controls{display:none}@media(min-width:901px) and (max-width:1400px){.process-scroll-controls{display:flex;justify-content:flex-end;gap:12px;margin-top:12px}.process-scroll-controls button{width:48px;height:44px;border:1px solid var(--line);background:white;color:var(--sage);font-size:22px;cursor:pointer}.process-scroll-controls button:disabled{opacity:.35;cursor:default}}
