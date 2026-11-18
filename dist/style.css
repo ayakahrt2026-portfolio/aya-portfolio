@@ -347,3 +347,5 @@ main .mobile-phrase{white-space:nowrap;}
  #process .process-list h3{margin:20px 0 12px;min-height:2.9em;display:flex;align-items:center;padding-inline:8px;line-height:1.45}
  #process .process-list p{margin:0;padding-inline:8px;line-height:2}
 }
+
+@media(min-width:901px) and (max-width:1200px){#process .process-list li:last-child .reading-unit{white-space:normal}}
