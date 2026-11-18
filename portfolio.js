@@ -49,7 +49,14 @@ function setProjectCopy(element, copy) {
 
 function openProject(button){project=projects.find(p=>p.id===button.dataset.project);if(!project)return;opener=button;document.getElementById('dialog-category').textContent=project.media;for(const [id,val] of [['project-title',project.title],['project-date',project.date],['project-lead',project.lead],['project-role',project.role],['project-scale',project.scale]])document.getElementById(id).textContent=val;document.getElementById('project-tools-row').hidden=!project.tools;document.getElementById('project-tools').textContent=project.tools||'';const body=document.getElementById('project-body');body.replaceChildren();project.body.forEach(([title,copy])=>{const h=document.createElement('h3'),p=document.createElement('p');h.textContent=title;setProjectCopy(p,copy);body.append(h,p)});const link=document.getElementById('project-link');link.hidden=!project.link;if(project.link){link.href=project.link[0];link.textContent=project.link[1]+' ↗'}else link.removeAttribute('href');strip.replaceChildren();project.images.forEach((img,i)=>{const b=document.createElement('button'),im=document.createElement('img');b.type='button';b.setAttribute('aria-label',img.caption);im.src=img.src;im.alt='';b.append(im);b.addEventListener('click',()=>imageAt(i));strip.append(b)});strip.hidden=project.images.length<2;if(!dialog.open)dialog.showModal();document.body.classList.add('modal-open');dialog.scrollTop=0;document.querySelector(".project-detail").scrollTop=0;imageAt(Number(button.dataset.slide)||0);if(!navigatingProject)document.getElementById('close-dialog').focus({preventScroll:true});}
 dialog.addEventListener('cancel',event=>{event.preventDefault();closeWithMotion(dialog)});
-document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click',()=>openProject(b)));
+function hasTextSelectionWithin(element) {
+ const selection = window.getSelection();
+ return selection && !selection.isCollapsed
+  && (element.contains(selection.anchorNode) || element.contains(selection.focusNode));
+}
+document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',event=>{
+ if(event.detail === 0 || !hasTextSelectionWithin(button)) openProject(button);
+}));
 document.getElementById('close-dialog').addEventListener('click',()=>closeWithMotion(dialog));document.getElementById('previous-image').addEventListener('click',()=>imageAt(index-1));document.getElementById('next-image').addEventListener('click',()=>imageAt(index+1));dialog.addEventListener('close',()=>{version++;document.body.classList.remove('modal-open');opener?.focus({preventScroll:true})});dialog.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();imageAt(index+(e.key==='ArrowRight'?1:-1))}});
 
 // Animate separate content groups once as they enter the viewport.
@@ -105,6 +112,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('c
  const target=link.hash&&document.getElementById(link.hash.slice(1));
  if(!target)return;
  event.preventDefault();
+ if(event.detail !== 0 && hasTextSelectionWithin(link)) return;
  if(mobileMenu.open){pendingSection=target;closeMenu()}else scrollToSection(target);
 }));
 mobileMenu.addEventListener('close',()=>{
