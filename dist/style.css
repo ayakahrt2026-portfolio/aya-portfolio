@@ -275,3 +275,30 @@ main .mobile-phrase{white-space:nowrap;}
  .instagram-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
  .reach-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
+
+/* Desktop content shares the axis of the navigation-safe reading area. */
+@media(min-width:901px){
+ main .career-section.wrap,
+ main .contact-inner.wrap{
+  width:var(--narrow);
+  margin-left:calc(240px + (100% - 300px - var(--narrow))/2);
+  margin-right:60px;
+ }
+ .service-grid article{display:flex;flex-direction:column;align-items:flex-start;}
+ .service-grid article>p:not(.eyebrow){margin-bottom:24px;}
+ .service-grid .text-link{margin-top:auto;padding-block:12px;}
+ .service-agreement{gap:32px;margin-top:40px;}
+ .section-heading{margin-bottom:48px;}
+ .section-intro{margin-bottom:40px;}
+ .about-text>.text-link,
+ .personal-copy>.button,
+ .school-progress>.button{
+  display:flex;width:fit-content;max-width:100%;margin:32px auto 0;
+ }
+ .school-progress .hint-learning{margin-top:20px;}
+ .school-updates{margin-bottom:0;}
+ .contact-invitation .text-link{margin-top:24px;}
+ .contact-inner>div{margin-bottom:40px;}
+ .contact-platforms{margin-bottom:40px;}
+ .process-note{text-align:center;margin-top:32px;}
+}
