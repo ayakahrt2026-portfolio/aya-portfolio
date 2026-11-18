@@ -167,3 +167,5 @@ const consult=document.createElement('a');
 consult.className='button case-consult';consult.href='#contact';consult.textContent='このような制作・支援を相談する';
 document.querySelector('.project-detail').append(consult);
 consult.addEventListener('click',event=>{event.preventDefault();dialog.close();scrollToSection(document.getElementById('contact'));});
+
+(()=>{const list=document.querySelector('.process-list');const buttons=[...document.querySelectorAll('[data-process-scroll]')];if(!list||!buttons.length)return;const update=()=>buttons.forEach(b=>b.disabled=Number(b.dataset.processScroll)<0?list.scrollLeft<=1:list.scrollLeft>=list.scrollWidth-list.clientWidth-1);buttons.forEach(b=>b.addEventListener('click',()=>list.scrollBy({left:Number(b.dataset.processScroll)*252,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'})));list.addEventListener('scroll',update);window.addEventListener('resize',update);update();})();
