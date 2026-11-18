@@ -39,9 +39,9 @@ const projectCopyEndings = /(リニューアルしました。|デザインし�
 function setProjectCopy(element, copy) {
  element.replaceChildren();
  copy.split(projectCopyEndings).forEach((part, index) => {
-  if (index % 2 === 0) { element.append(document.createTextNode(part)); return; }
+  if (index % 2 === 0) { part.split(/(担当しました。|制作しました。|調整しました。|実装しました。|納品しました。|進めました。|ご相談いただけます。|対応します。|30分へ|更新マニュアル|WordPress|問い合わせ|担当範囲|優先順位)/g).forEach((text, n) => { if(n % 2){const unit=document.createElement('span');unit.className='reading-unit';unit.textContent=text;element.append(unit);}else element.append(document.createTextNode(text));}); return; }
   const phrase = document.createElement('span');
-  phrase.className = 'mobile-phrase';
+  phrase.className = 'mobile-phrase reading-unit';
   phrase.textContent = part;
   element.append(phrase);
  });

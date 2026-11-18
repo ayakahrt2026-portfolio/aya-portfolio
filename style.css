@@ -257,3 +257,21 @@ br._PCblock{display:inline;}
  br._SPblock{display:inline;}
  br._PCblock{display:none;}
 }
+
+/* Keep words and sentence endings together without changing text or font size. */
+.reading-unit{white-space:nowrap;}
+.work-purpose,.service-grid p,.process-list p{text-wrap:pretty;}
+main .mobile-phrase{white-space:nowrap;}
+
+/* Reserve room for the fixed desktop navigation below the unchanged hero. */
+@media(min-width:901px){
+ main .wrap:not(.hero):not(.career-section):not(.contact-inner){
+  width:calc(100% - 300px);
+  margin-left:240px;
+  margin-right:60px;
+ }
+}
+@media(min-width:901px) and (max-width:1200px){
+ .instagram-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+ .reach-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
