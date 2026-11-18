@@ -309,3 +309,14 @@ main .mobile-phrase{white-space:nowrap;}
 @media(max-width:600px){.hero-discipline{font-size:14px;letter-spacing:.04em;line-height:2}}
 
 .contact-copy-sp{display:none}@media(max-width:600px){.contact-copy-pc{display:none}.contact-copy-sp{display:inline}}
+
+/* Approved service additions: scoped below the unchanged first view. */
+.service-grid .service-addition{padding-top:20px;border-top:1px solid var(--line)}
+.service-examples{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;width:100%}
+.service-grid .service-examples .text-link{margin-top:0;padding:10px 0;line-height:1.7}
+.service-learning{margin-top:32px;padding:28px 32px;border:1px solid var(--line);background:var(--paper)}
+.service-learning h3{margin:0 0 14px;font-size:18px;font-weight:500}
+.service-learning p{margin:0;line-height:2;text-wrap:pretty}
+@media(max-width:700px){.service-learning{padding:24px;margin-top:24px}.service-grid .service-addition{margin-top:20px}.service-examples{margin-top:20px}}
+
+@media(min-width:901px){.service-grid article>.text-link{margin-top:0}.service-examples{margin-top:0}}
