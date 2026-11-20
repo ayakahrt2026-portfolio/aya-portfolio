@@ -19,7 +19,9 @@ if (contactForm) {
   if (sending || !contactForm.reportValidity()) return;
   const name = contactForm.elements.name.value.trim();
   const email = contactForm.elements.email.value.trim();
-  const message = contactForm.elements.message.value.trim();
+  const topic = contactForm.elements.topic ? contactForm.elements.topic.value : '';
+  const body = contactForm.elements.message.value.trim();
+  const message = body && topic ? `【ご相談の種類】${topic}\n\n${body}` : body;
   if (!name || !message) {
    status.hidden = false; status.textContent = 'お名前とご相談内容をご入力ください。'; return;
   }
