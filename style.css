@@ -464,3 +464,43 @@ main .mobile-phrase{white-space:nowrap;}
 .service-grid .text-link:hover,.news-list a:hover,.news-list .text-inline:hover{background:#e9ece5}
 .news-list p{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
 .news-list a,.news-list .text-inline{margin-left:0}
+/* SP first view fix 2026-11-21: 2-column CTAs, roomier spacing, visible illustration */
+@media(max-width:900px){
+ .hero{padding:44px 20px 330px;min-height:0;height:auto}
+ .hero .hero-jp{margin:32px 0 22px;line-height:1.75}
+ .hero .hero-description{margin-bottom:40px;line-height:2.1}
+ .hero-actions{flex-direction:row;flex-wrap:nowrap;gap:12px;width:100%;max-width:440px;margin-inline:auto}
+ .hero-actions a,.hero-actions .button.hero-cta{width:auto;min-width:0;flex:1 1 0;justify-content:center;gap:6px;padding:14px 6px;font-size:14px;white-space:nowrap}
+ .hero-actions .material-symbols-outlined{font-size:18px}
+ .hero-status{margin-top:32px}
+ .hero>.hero-portrait{left:auto;right:0;bottom:28px;width:250px;height:280px;opacity:.95;z-index:0}
+ .hero>.hero-portrait img{object-position:right bottom}
+ .hero-scroll{left:44px;bottom:28px;height:96px}
+}
+@media(max-width:360px){.hero-actions a,.hero-actions .button.hero-cta{font-size:13px}.hero-actions .material-symbols-outlined{display:none}}
+.faq+.about-section{border-top:0}
+@media(max-width:900px){
+ .hero{padding:30px 20px 250px}
+ .hero .hero-jp{margin:26px 0 18px}
+ .hero .hero-description{margin-bottom:32px}
+ .hero-status{margin-top:24px}
+ .hero>.hero-portrait{bottom:8px;width:220px;height:245px}
+ .hero-scroll{bottom:12px;height:80px}
+}
+@media(max-width:900px){.hero{padding-bottom:240px}}
+/* SP: scroll line centered right after the availability badge (2026-11-21) */
+@media(max-width:900px){
+ .hero{padding-bottom:150px}
+ .hero-scroll{position:relative;left:auto;right:auto;bottom:auto;flex:none;align-self:center;margin:22px auto 0;width:1px;height:72px;z-index:3}
+}
+@media(max-width:900px){.hero{padding-bottom:146px}}
+
+/* SP: illustration enlarged as a full-width background (2026-11-21) */
+@media(max-width:900px){
+ .hero>.hero-portrait{left:0;right:0;bottom:0;width:100%;height:340px;opacity:.8;z-index:0;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 32%);mask-image:linear-gradient(to bottom,transparent 0,#000 32%)}
+ .hero>.hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:62% 22%}
+}
+@media(max-width:900px){
+ .hero>.hero-portrait{left:auto;right:0;width:72%;height:310px}
+ .hero>.hero-portrait img{object-position:70% 18%}
+}
