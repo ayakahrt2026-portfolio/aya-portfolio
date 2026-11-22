@@ -115,6 +115,7 @@ a{color:inherit}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}}
 .panel h2{font-family:var(--hand);font-weight:600;font-size:clamp(18px,2cqi,26px);margin-bottom:4px}
 .panel .lead{font-size:clamp(11px,1.05cqi,14px);color:var(--ink-2);margin-bottom:14px}
+.close-icon{display:none}
 .close{position:absolute;right:16px;top:14px;font-size:13px;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px;background:var(--cream)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .card{background:var(--cream);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;font-size:clamp(11px,1.05cqi,14px)}
@@ -160,9 +161,12 @@ a{color:inherit}
   .scene-wrap{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;order:2}
   .top,.clients,.status,.cmds,.bar,.panel{position:static;width:auto}
   .top{order:1;flex-direction:column;align-items:stretch}
-  .datebar{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
-  .menu{justify-content:flex-start}
-  .menu button{font-size:12px}
+  .datebar{flex-direction:column;align-items:stretch}
+  .menu{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%}
+  .menu button{min-width:0;min-height:44px;padding:4px 0;font-size:clamp(9px,3.2vw,14px);white-space:nowrap;background:#fff;color:#000}
+  .menu button:hover,.menu button[aria-current="true"]{background:#fff;color:#000;border-color:#000}
+  .datebar .date{background:#fff;color:#000}
+  .date .dw.sun{color:var(--sun)}.date .dw.sat{color:var(--sat)}
   .brand h1{font-size:18px}.date{font-size:16px}
   .bar{order:3;height:auto;border-radius:14px;padding:10px 14px;flex-wrap:wrap;gap:8px}
   .bar .msg{white-space:normal;font-size:14px}
@@ -177,7 +181,20 @@ a{color:inherit}
   .foot{padding-right:0}
   .fab{left:12px;right:12px;bottom:12px;justify-content:center;padding:12px}
   .cmd{aspect-ratio:1}
-  .panel{order:7;inset:auto;max-height:none}
+  html,body,.stage{background:#fff;color:#000}
+  .bar{background:#fff;color:#000}
+  .panel{position:relative;order:7;inset:auto;max-height:none}
+  .panel h2{padding-right:44px}
+  .close{top:0;right:0;display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:0;background:#fff;color:#000;font-size:26px;line-height:1}
+  .close-label{display:none}.close-icon{display:block}
+  #p-calendar,#p-calendar .lead,#p-calendar .pill{background:#fff;color:#000}
+  #p-calendar > div:first-of-type{justify-content:center}
+  .cal{grid-template-columns:repeat(7,minmax(0,1fr));text-align:center}
+  .cal div,.cal .today,.cal .h{background:#fff;color:#000}
+  .cal div{padding-inline:2px;overflow-wrap:anywhere}
+  .cal .ev{color:inherit;padding-inline:0}
+  #p-calendar .cal .su,#p-calendar .cal .holiday{color:var(--sun)}
+  #p-calendar .cal .sa{color:var(--sat)}
   .panel h2{font-size:20px}.panel .lead,.card{font-size:13px}
   .legend{font-size:11px}
 }
@@ -242,7 +259,7 @@ a{color:inherit}
 
   <!-- panels -->
   <section class="panel" id="p-goals" aria-label="目標">
-    <button class="close" data-close>閉じる</button>
+    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
     <h2 id="goals">目標</h2>
     <p class="lead">卒業から逆算して、今月・今週にやることを決めています。今月と今週の欄は、アドバイザーと相談して決めた案です。</p>
     <div class="grid">
@@ -255,7 +272,7 @@ a{color:inherit}
   </section>
 
   <section class="panel" id="p-calendar" aria-label="予定">
-    <button class="close" data-close>閉じる</button>
+    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
     <h2 id="calTitle">予定</h2>
     <p class="lead">平日は学習、休日は実践。学校行事は仕事の節目に置き換えています。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
@@ -265,7 +282,7 @@ a{color:inherit}
   </section>
 
   <section class="panel" id="p-records" aria-label="実績">
-    <button class="close" data-close>閉じる</button>
+    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
     <h2>実績</h2>
     <p class="lead">★は5段階。受注可能・事前相談・強化中の区分を、★の数に置き換えています。</p>
     <div class="grid">
@@ -278,14 +295,14 @@ a{color:inherit}
   </section>
 
   <section class="panel" id="p-advice" aria-label="アドバイザー">
-    <button class="close" data-close>閉じる</button>
+    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
     <h2>アドバイザーに相談</h2>
     <p class="lead">今のステータスから、今週の集中科目を提案します。</p>
     <div class="grid" id="adviceBody"></div>
   </section>
 
   <section class="panel" id="p-about" aria-label="このアプリについて">
-    <button class="close" data-close>閉じる</button>
+    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
     <h2>このアプリについて</h2>
     <p class="lead">「私の学校」は、学んだことと実践したことを記録し、スキルの伸びを育成ゲームのように見える形にする学習記録アプリです。このページは、その考え方を体験できるデモです。</p>
     <div class="grid">
@@ -408,6 +425,11 @@ function renderAdvice(){
    <div class="card"><h3>体調</h3><p>疲労度は${f}。${f>=60?'今日は休むを優先しましょう。休む時間も大切な予定です。':'まだ余裕があります。平日3時間の学習ペースを続けましょう。'}</p></div>
    <div class="card"><h3>今月の流れ（${now.getMonth()+1}月 第${wk}週）</h3><ul><li>第1〜2週：基礎を固める</li><li>第3週：短期集中で苦手を補う</li><li>第4週：作品公開（文化祭）と振り返り</li></ul></div>`;
 }
+// National holidays and substitute holidays published by Japan’s Cabinet Office.
+const nationalHolidays={
+  2026:new Set([101,112,211,223,320,429,503,504,505,506,720,811,921,922,923,1012,1103,1123]),
+  2027:new Set([101,111,211,223,321,322,429,503,504,505,719,811,920,923,1011,1103,1123])
+};
 function renderCal(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth(),first=new Date(y,m,1).getDay(),last=new Date(y,m+1,0).getDate();
   $('#calTitle').textContent=`予定（${y}年${m+1}月）`;
@@ -415,7 +437,10 @@ function renderCal(){
   let h='日月火水木金土'.split('').map((d,i)=>`<div class="h ${i===0?'su':i===6?'sa':''}">${d}</div>`).join('');
   for(let i=0;i<first;i++)h+='<div class="pad"></div>';
   for(let d=1;d<=last;d++){const dw=(first+d-1)%7,e=EV[d],we=dw===0||dw===6;
-    h+=`<div class="${d===now.getDate()?'today':''}"><span style="color:${dw===0?'var(--sun)':dw===6?'var(--sat)':'inherit'}">${d}</span>${e?`<span class="ev pill ${e[1]}">${e[0]}</span>`:`<span class="ev" style="color:var(--ink-2)">${we?'実践':'学習'}</span>`}</div>`}
+    const holiday=nationalHolidays[y]?.has((m+1)*100+d);
+    const dayClass=holiday?'holiday':dw===0?'su':dw===6?'sa':'';
+    const dayColor=holiday||dw===0?'var(--sun)':dw===6?'var(--sat)':'inherit';
+    h+=`<div class="${d===now.getDate()?'today':''}"><span class="${dayClass}" style="color:${dayColor}">${d}</span>${e?`<span class="ev pill ${e[1]}">${e[0]}</span>`:`<span class="ev">${we?'実践':'学習'}</span>`}</div>`}
   $('#cal').innerHTML=h;
 }
 function renderRecords(){
