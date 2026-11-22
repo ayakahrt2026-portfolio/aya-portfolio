@@ -107,7 +107,6 @@ a{color:inherit}
 .bar .msg{flex:1;font-family:var(--hand);font-size:clamp(12px,1.25cqi,17px);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .bar .keys{font-size:clamp(9px,.82cqi,11.5px);opacity:.8;white-space:nowrap}
 .bar kbd{font-family:var(--body);border:1px solid rgba(251,247,238,.5);border-radius:5px;padding:0 5px;margin:0 2px}
-.snd{font-size:clamp(9px,.85cqi,12px);border:1px solid rgba(251,247,238,.5);border-radius:999px;padding:2px 10px;color:var(--paper)}
 
 /* panels */
 .panel{position:absolute;inset:14% 2.2% 13% 2.2%;z-index:6;background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:clamp(14px,2cqi,28px);overflow:auto;display:none;box-shadow:0 20px 40px -20px rgba(58,54,49,.5)}
@@ -115,7 +114,6 @@ a{color:inherit}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}}
 .panel h2{font-family:var(--hand);font-weight:600;font-size:clamp(18px,2cqi,26px);margin-bottom:4px}
 .panel .lead{font-size:clamp(11px,1.05cqi,14px);color:var(--ink-2);margin-bottom:14px}
-.close-icon{display:none}
 .close{position:absolute;right:16px;top:14px;font-size:13px;border:1.5px solid var(--line);border-radius:999px;padding:3px 14px;background:var(--cream)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .card{background:var(--cream);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;font-size:clamp(11px,1.05cqi,14px)}
@@ -161,12 +159,9 @@ a{color:inherit}
   .scene-wrap{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;order:2}
   .top,.clients,.status,.cmds,.bar,.panel{position:static;width:auto}
   .top{order:1;flex-direction:column;align-items:stretch}
-  .datebar{flex-direction:column;align-items:stretch}
-  .menu{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%}
-  .menu button{min-width:0;min-height:44px;padding:4px 0;font-size:clamp(9px,3.2vw,14px);white-space:nowrap;background:#fff;color:#000}
-  .menu button:hover,.menu button[aria-current="true"]{background:#fff;color:#000;border-color:#000}
-  .datebar .date{background:#fff;color:#000}
-  .date .dw.sun{color:var(--sun)}.date .dw.sat{color:var(--sat)}
+  .datebar{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  .menu{justify-content:flex-start}
+  .menu button{font-size:12px}
   .brand h1{font-size:18px}.date{font-size:16px}
   .bar{order:3;height:auto;border-radius:14px;padding:10px 14px;flex-wrap:wrap;gap:8px}
   .bar .msg{white-space:normal;font-size:14px}
@@ -181,20 +176,7 @@ a{color:inherit}
   .foot{padding-right:0}
   .fab{left:12px;right:12px;bottom:12px;justify-content:center;padding:12px}
   .cmd{aspect-ratio:1}
-  html,body,.stage{background:#fff;color:#000}
-  .bar{background:#fff;color:#000}
-  .panel{position:relative;order:7;inset:auto;max-height:none}
-  .panel h2{padding-right:44px}
-  .close{top:0;right:0;display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:0;background:#fff;color:#000;font-size:26px;line-height:1}
-  .close-label{display:none}.close-icon{display:block}
-  #p-calendar,#p-calendar .lead,#p-calendar .pill{background:#fff;color:#000}
-  #p-calendar > div:first-of-type{justify-content:center}
-  .cal{grid-template-columns:repeat(7,minmax(0,1fr));text-align:center}
-  .cal div,.cal .today,.cal .h{background:#fff;color:#000}
-  .cal div{padding-inline:2px;overflow-wrap:anywhere}
-  .cal .ev{color:inherit;padding-inline:0}
-  #p-calendar .cal .su,#p-calendar .cal .holiday{color:var(--sun)}
-  #p-calendar .cal .sa{color:var(--sat)}
+  .panel{order:7;inset:auto;max-height:none}
   .panel h2{font-size:20px}.panel .lead,.card{font-size:13px}
   .legend{font-size:11px}
 }
@@ -207,7 +189,7 @@ a{color:inherit}
 <main class="stage" id="stage" aria-label="私の学校 デモ画面">
   <div class="loading" id="loading" aria-hidden="true">
     <svg viewBox="0 0 40 40" width="56" height="56"><g fill="none" stroke="#4E6449" stroke-width="1.6" stroke-linejoin="round"><path d="M6 18 L20 8 L34 18"/><rect x="10" y="18" width="20" height="16"/><path d="M18 34 v-8 h4 v8"/></g></svg>
-    <p>今日の教室をひらいています…</p>
+    <p>読み込み中…</p>
   </div>
 
   <div class="scene-wrap">
@@ -252,57 +234,53 @@ a{color:inherit}
   <div class="bar">
     <p class="msg" id="msg" aria-live="polite">今日は日曜日。平日に学んだことを、実践で試す日です。</p>
     <span class="keys"><kbd>←↑↓→</kbd>選ぶ <kbd>Enter</kbd>実行 <kbd>Esc</kbd>閉じる</span>
-    <button class="snd" id="snd" aria-pressed="false">音 OFF</button>
   </div>
 
   <div class="toast" id="toast" aria-hidden="true"><p>ひと休み中…</p><p class="sub">疲労度 −15</p></div>
 
   <!-- panels -->
   <section class="panel" id="p-goals" aria-label="目標">
-    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
+    <button class="close" data-close>閉じる</button>
     <h2 id="goals">目標</h2>
-    <p class="lead">卒業から逆算して、今月・今週にやることを決めています。今月と今週の欄は、アドバイザーと相談して決めた案です。</p>
+    <p class="lead">最終目標から逆算して、今月・今週にやることを決めています。今月と今週の欄は、アドバイザーと相談して決めた案です。</p>
     <div class="grid">
-      <div class="card"><h3>卒業目標</h3><p>安定した月収を確保し、在宅で受注を続けられている。春陽・陸空・紬と同じ部屋で暮らしながら、仕事が続いている状態。</p><p style="margin-top:6px"><span class="pill">卒業時期：相談しながら決定</span></p></div>
-      <div class="card"><h3>今学期（11月）の目標</h3><ul><li>Figmaで学習アプリの画面を1つ完成させる</li><li>Pythonの基礎（変数・条件分岐・繰り返し）を終える</li><li>縦動画を3本編集して公開</li></ul></div>
-      <div class="card adv"><h3>今週の目標 <span class="pill s">アドバイザー案</span></h3><ul><li>平日：Python 30分×5日＋Figma 2時間×5日</li><li>土日：このデモをポートフォリオに公開（文化祭）</li><li>疲労度が60を超えたら、休むコマンドを入れる</li></ul></div>
+      <div class="card"><h3>最終目標</h3><p>安定した月収を確保し、在宅で受注を続けられている。春陽・陸空・紬と同じ部屋で暮らしながら、仕事が続いている状態。</p><p style="margin-top:6px"><span class="pill">達成時期：相談しながら決定</span></p></div>
+      <div class="card"><h3>今月の目標</h3><ul><li>Figmaで学習アプリの画面を1つ完成させる</li><li>Pythonの基礎（変数・条件分岐・繰り返し）を終える</li><li>縦動画を3本編集して公開</li></ul></div>
+      <div class="card adv"><h3>今週の目標 <span class="pill s">アドバイザー案</span></h3><ul><li>平日：Python 30分×5日＋Figma 2時間×5日</li><li>土日：このデモをポートフォリオに公開</li><li>疲労度が60を超えたら、休むコマンドを入れる</li></ul></div>
       <div class="card"><h3>収益目標</h3><ul><li>まず受注件数1件（初受注）</li><li>次に継続案件1件</li><li>金額目標は初受注後に設定</li></ul></div>
       <div class="card"><h3>獲得したい案件</h3><ul><li><span class="pill t">1</span> クリエイティブ</li><li><span class="pill t">2</span> SNSマーケティング</li><li><span class="pill">3</span> カスタマーサポート</li><li><span class="pill">4</span> バックオフィス</li></ul></div>
     </div>
   </section>
 
   <section class="panel" id="p-calendar" aria-label="予定">
-    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
+    <button class="close" data-close>閉じる</button>
     <h2 id="calTitle">予定</h2>
-    <p class="lead">平日は学習、休日は実践。学校行事は仕事の節目に置き換えています。</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-      <span class="pill s">定期テスト＝資格試験</span><span class="pill t">文化祭＝作品公開</span><span class="pill">体育祭＝短期集中</span><span class="pill s">修学旅行＝新ツール挑戦</span><span class="pill t">三者面談＝商談</span>
-    </div>
+    <p class="lead">平日は学習、休日は実践。面談や講座などの予定を載せています。</p>
     <div class="cal" id="cal"></div>
   </section>
 
   <section class="panel" id="p-records" aria-label="実績">
-    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
+    <button class="close" data-close>閉じる</button>
     <h2>実績</h2>
     <p class="lead">★は5段階。受注可能・事前相談・強化中の区分を、★の数に置き換えています。</p>
     <div class="grid">
       <div class="card"><h3>案件カテゴリ</h3><ul id="catRank"></ul></div>
       <div class="card"><h3>ツール習熟度</h3><ul id="toolRank"></ul></div>
-      <div class="card"><h3>資格</h3><ul><li>挑戦する資格を選定中 <span class="pill">定期テスト待ち</span></li></ul></div>
+      <div class="card"><h3>資格</h3><ul><li>挑戦する資格を選定中 </li></ul></div>
       <div class="card"><h3>称号</h3><ul id="titles"></ul></div>
       <div class="card" style="grid-column:1/-1"><h3>クエスト：SNS・動画の実践プログラム（全7回）</h3><div id="quests"></div></div>
     </div>
   </section>
 
   <section class="panel" id="p-advice" aria-label="アドバイザー">
-    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
+    <button class="close" data-close>閉じる</button>
     <h2>アドバイザーに相談</h2>
     <p class="lead">今のステータスから、今週の集中科目を提案します。</p>
     <div class="grid" id="adviceBody"></div>
   </section>
 
   <section class="panel" id="p-about" aria-label="このアプリについて">
-    <button class="close" type="button" data-close aria-label="閉じる"><span class="close-label" aria-hidden="true">閉じる</span><span class="close-icon" aria-hidden="true">×</span></button>
+    <button class="close" data-close>閉じる</button>
     <h2>このアプリについて</h2>
     <p class="lead">「私の学校」は、学んだことと実践したことを記録し、スキルの伸びを育成ゲームのように見える形にする学習記録アプリです。このページは、その考え方を体験できるデモです。</p>
     <div class="grid">
@@ -367,9 +345,8 @@ const ICONS={
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const state=JSON.parse(JSON.stringify(DATA));
 const st=k=>state.stats.find(s=>s.k===k);
-let sel=0,sound=false,actx;
+let sel=0;
 
-function beep(f=660,d=.08){if(!sound)return;try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type='triangle';o.frequency.value=f;g.gain.value=.06;o.connect(g);g.connect(actx.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+d*3);o.stop(actx.currentTime+d*3)}catch(e){}}
 
 function renderDate(){
   const now=new Date(),dw='日月火水木金土'[now.getDay()];
@@ -398,14 +375,14 @@ function bump(k,d){const s=st(k);if(!s)return;s.v=Math.max(0,s.v+d);const el=$('
 function run(c,btn){
   btn=btn||$$('.cmd')[CMDS.indexOf(c)];btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop');
   if(c.fx){
-    if(c.fx.fatigue>0&&st('fatigue').v>=90){$('#msg').textContent='疲れがたまっています。休むを選びましょう。';beep(220,.12);return}
+    if(c.fx.fatigue>0&&st('fatigue').v>=90){$('#msg').textContent='疲れがたまっています。休むを選びましょう。';return}
     Object.entries(c.fx).forEach(([k,d])=>bump(k,d));
   }
   if(c.cl){const t=state.clients.reduce((a,b)=>a.a<b.a?a:b);t.a=Math.min(100,t.a+c.cl);renderClients()}
   if(c.ord&&Math.random()<.35)bump('orders',1);
   if(c.rest){const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
   setTimeout(()=>{renderStats()},1150);
-  $('#msg').textContent=c.m;beep(c.rest?440:720);
+  $('#msg').textContent=c.m;
   if(c.panel)open(c.panel);
 }
 function open(id){
@@ -420,27 +397,19 @@ function renderAdvice(){
   const hiS=sk.reduce((a,b)=>a.v>b.v?a:b),loS=sk.reduce((a,b)=>a.v<b.v?a:b),f=st('fatigue').v;
   const now=new Date(),wk=Math.ceil(now.getDate()/7);
   $('#adviceBody').innerHTML=`
-   <div class="card adv"><h3>今週の集中科目</h3><p><b>${loS.lb}</b>（${loS.v}）が伸びしろです。今週は「体育祭＝短期集中」として、平日に毎日30分ずつ足しましょう。</p></div>
+   <div class="card adv"><h3>今週の集中科目</h3><p><b>${loS.lb}</b>（${loS.v}）が伸びしろです。今週は集中期間として、平日に毎日30分ずつ足しましょう。</p></div>
    <div class="card"><h3>好調な科目</h3><p><b>${hiS.lb}</b>（${hiS.v}）が好調です。休日は${hiS.lb}を使った作品づくりで、ポートフォリオに1つ追加しましょう。</p></div>
    <div class="card"><h3>体調</h3><p>疲労度は${f}。${f>=60?'今日は休むを優先しましょう。休む時間も大切な予定です。':'まだ余裕があります。平日3時間の学習ペースを続けましょう。'}</p></div>
-   <div class="card"><h3>今月の流れ（${now.getMonth()+1}月 第${wk}週）</h3><ul><li>第1〜2週：基礎を固める</li><li>第3週：短期集中で苦手を補う</li><li>第4週：作品公開（文化祭）と振り返り</li></ul></div>`;
+   <div class="card"><h3>今月の流れ（${now.getMonth()+1}月 第${wk}週）</h3><ul><li>第1〜2週：基礎を固める</li><li>第3週：短期集中で苦手を補う</li><li>第4週：作品公開と振り返り</li></ul></div>`;
 }
-// National holidays and substitute holidays published by Japan’s Cabinet Office.
-const nationalHolidays={
-  2026:new Set([101,112,211,223,320,429,503,504,505,506,720,811,921,922,923,1012,1103,1123]),
-  2027:new Set([101,111,211,223,321,322,429,503,504,505,719,811,920,923,1011,1103,1123])
-};
 function renderCal(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth(),first=new Date(y,m,1).getDay(),last=new Date(y,m+1,0).getDate();
   $('#calTitle').textContent=`予定（${y}年${m+1}月）`;
-  const EV={1:['入学（学習開始）','s'],15:['体育祭：Python集中','n'],22:['文化祭：デモ公開','t'],29:['修学旅行：Figma新機能','s']};
+  const EV={1:['学習開始','s'],8:['無料相談会','t'],15:['キャリアアップ基礎講座','s'],22:['デモページ公開','t'],29:['オンライン面談','t']};
   let h='日月火水木金土'.split('').map((d,i)=>`<div class="h ${i===0?'su':i===6?'sa':''}">${d}</div>`).join('');
   for(let i=0;i<first;i++)h+='<div class="pad"></div>';
   for(let d=1;d<=last;d++){const dw=(first+d-1)%7,e=EV[d],we=dw===0||dw===6;
-    const holiday=nationalHolidays[y]?.has((m+1)*100+d);
-    const dayClass=holiday?'holiday':dw===0?'su':dw===6?'sa':'';
-    const dayColor=holiday||dw===0?'var(--sun)':dw===6?'var(--sat)':'inherit';
-    h+=`<div class="${d===now.getDate()?'today':''}"><span class="${dayClass}" style="color:${dayColor}">${d}</span>${e?`<span class="ev pill ${e[1]}">${e[0]}</span>`:`<span class="ev">${we?'実践':'学習'}</span>`}</div>`}
+    h+=`<div class="${d===now.getDate()?'today':''}"><span style="color:${dw===0?'var(--sun)':dw===6?'var(--sat)':'inherit'}">${d}</span>${e?`<span class="ev pill ${e[1]}">${e[0]}</span>`:`<span class="ev" style="color:var(--ink-2)">${we?'実践':'学習'}</span>`}</div>`}
   $('#cal').innerHTML=h;
 }
 function renderRecords(){
@@ -448,18 +417,17 @@ function renderRecords(){
   $('#catRank').innerHTML=cats.map(c=>`<li>${c[0]} <span class="stars" style="float:right">${stars(c[1])}</span></li>`).join('');
   const tools=[['Photoshop',3],['Illustrator',3],['Figma',2],['Canva',2],['Codex / Claude',3]];
   $('#toolRank').innerHTML=tools.map(c=>`<li>${c[0]} <span class="stars" style="float:right">${stars(c[1])}</span></li>`).join('');
-  $('#titles').innerHTML=['入学おめでとう（学習開始）','はじめての提出（SNS設計図）','<span style="color:var(--ink-2)">？？？（初受注で解放）</span>'].map(t=>`<li>${t}</li>`).join('');
+  $('#titles').innerHTML=['学習スタート','はじめての提出（SNS設計図）','<span style="color:var(--ink-2)">？？？（初受注で解放）</span>'].map(t=>`<li>${t}</li>`).join('');
   $('#quests').innerHTML=state.quests.map((q,i)=>`<div class="quest ${q[1]}"><span class="chk">${q[1]==='done'?'✓':''}</span><span>第${i+1}回 ${q[0]}</span><span class="pill ${q[1]==='done'?'s':q[1]==='now'?'t':''}" style="margin-left:auto">${q[1]==='done'?'提出済み':q[1]==='now'?'取り組み中':'これから'}</span></div>`).join('');
 }
 
 $$('[data-open]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.open)));
 $$('[data-close]').forEach(b=>b.addEventListener('click',()=>{open('home');$$('.cmd')[sel].focus()}));
-$('#snd').addEventListener('click',e=>{sound=!sound;e.currentTarget.textContent=sound?'音 ON':'音 OFF';e.currentTarget.setAttribute('aria-pressed',sound);beep()});
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){open('home');return}
   if($('.panel.open'))return;
   const mv={ArrowRight:1,ArrowLeft:-1,ArrowDown:3,ArrowUp:-3}[e.key];
-  if(mv!==undefined&&document.activeElement.closest('#cmds,body')){e.preventDefault();sel=(sel+mv+CMDS.length)%CMDS.length;$$('.cmd')[sel].focus();hi();beep(880,.04)}
+  if(mv!==undefined&&document.activeElement.closest('#cmds,body')){e.preventDefault();sel=(sel+mv+CMDS.length)%CMDS.length;$$('.cmd')[sel].focus();hi();}
   if(e.key==='Enter'&&document.activeElement.classList.contains('cmd')){e.preventDefault();run(CMDS[sel])}
 });
 renderDate();renderStats();renderClients();renderCmds();renderCal();renderRecords();
